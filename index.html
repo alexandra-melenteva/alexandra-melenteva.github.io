@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Мелентиева Александра — Маркетолог полного цикла</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
+    rel="stylesheet"
+  />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'noir-bg':      '#0b0b14',
+            'noir-surface': '#13131f',
+            'noir-border':  '#1e1e30',
+            'indigo-soft':  '#6366f1',
+            'indigo-glow':  '#818cf8',
+            'mint':         '#6ee7b7',
+            'rose-dust':    '#f9a8d4',
+            'gray-muted':   '#6b7280',
+            'gray-light':   '#d1d5db',
+          },
+          fontFamily: {
+            sans:  ['Inter', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          },
+          boxShadow: {
+            'glow-indigo': '0 0 30px rgba(99, 102, 241, 0.15)',
+            'glow-mint':   '0 0 20px rgba(110, 231, 183, 0.1)',
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #0b0b14;
+      color: #d1d5db;
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: '';
+      display: block;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #6366f1, #6ee7b7, #f9a8d4);
+      z-index: 9999;
+    }
+
+    .nav-link {
+      position: relative;
+      color: #9ca3af;
+      transition: color 0.3s ease;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 1px;
+      background: #6366f1;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover { color: #d1d5db; }
+    .nav-link:hover::after { width: 100%; }
+
+    .case-card {
+      background: #13131f;
+      border: 1px solid #1e1e30;
+      border-radius: 16px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    .case-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 0 40px rgba(99, 102, 241, 0.12);
+      border-color: #6366f1;
+    }
+
+    .case-img-placeholder {
+      background: linear-gradient(135deg, #13131f 0%, #1a1a2e 50%, #16213e 100%);
+      border-radius: 12px 12px 0 0;
+      overflow: hidden;
+      position: relative;
+    }
+    .case-img-placeholder img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      opacity: 0.85;
+      transition: opacity 0.3s ease, transform 0.4s ease;
+    }
+    .case-card:hover .case-img-placeholder img {
+      opacity: 1;
+      transform: scale(1.03);
+    }
+
+    .hero-grid {
+      background-image:
+        linear-gradient(rgba(99,102,241,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99,102,241,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    .modal-overlay {
+      background: rgba(11, 11, 20, 0.9);
+      backdrop-filter: blur(8px);
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0b0b14; }
+    ::-webkit-scrollbar-thumb {
+      background: #1e1e30;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover { background: #6366f1; }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 500;
+      background: rgba(99, 102, 241, 0.08);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      color: #818cf8;
+    }
+    .tag-mint {
+      background: rgba(110, 231, 183, 0.08);
+      border-color: rgba(110, 231, 183, 0.2);
+      color: #6ee7b7;
+    }
+    .tag-rose {
+      background: rgba(249, 168, 212, 0.08);
+      border-color: rgba(249, 168, 212, 0.2);
+      color: #f9a8d4;
+    }
+
+    .btn-case {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #818cf8;
+      transition: color 0.3s ease, gap 0.3s ease;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .btn-case:hover {
+      color: #6ee7b7;
+      gap: 10px;
+    }
+
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 12px;
+      border: 1px solid #1e1e30;
+      color: #6b7280;
+      font-size: 13px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    .social-btn:hover {
+      border-color: rgba(99, 102, 241, 0.4);
+      color: #d1d5db;
+      background: rgba(99, 102, 241, 0.05);
+    }
+
+    .modal-overlay.is-open {
+      display: flex !important;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 24px;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 8px;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #6366f1;
+    }
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      left: 2px; top: 18px;
+      width: 1px;
+      height: calc(100% + 16px);
+      background: #1e1e30;
+    }
+    .timeline-item:last-child::after { display: none; }
+  </style>
+</head>
+
+<body>
+
+<!-- ============================================================
+     HEADER
+============================================================ -->
+<header id="header" class="fixed top-2 left-0 right-0 z-50 transition-all duration-300">
+  <div class="max-w-6xl mx-auto px-6">
+    <nav class="flex items-center justify-between py-4 px-6 rounded-2xl
+                bg-noir-surface/80 backdrop-blur-md border border-noir-border">
+
+      <a href="#hero" class="font-serif text-gray-light text-lg tracking-wide
+                             hover:text-indigo-glow transition-colors duration-300">
+        AM<span class="text-indigo-soft">.</span>
+      </a>
+
+      <ul class="hidden md:flex items-center gap-8">
+        <li><a href="#hero"      class="nav-link text-sm font-medium">Главная</a></li>
+        <li><a href="#cases"     class="nav-link text-sm font-medium">Кейсы</a></li>
+        <li><a href="#about"     class="nav-link text-sm font-medium">Обо мне</a></li>
+        <li><a href="#experience" class="nav-link text-sm font-medium">Опыт</a></li>
+        <li><a href="#articles"  class="nav-link text-sm font-medium">Статьи</a></li>
+        <li><a href="#contacts"  class="nav-link text-sm font-medium">Контакты</a></li>
+      </ul>
+
+      <a href="#contacts"
+         class="hidden md:inline-flex items-center gap-2 text-sm font-medium px-5 py-2.5
+                bg-indigo-soft/10 border border-indigo-soft/30 text-indigo-glow
+                rounded-xl hover:bg-indigo-soft/20 hover:border-indigo-soft
+                transition-all duration-300">
+        Связаться
+      </a>
+
+      <button id="burger-btn"
+              class="md:hidden flex flex-col gap-1.5 p-2"
+              aria-label="Открыть меню">
+        <span class="burger-line block w-5 h-0.5 bg-gray-light rounded transition-all duration-300"></span>
+        <span class="burger-line block w-5 h-0.5 bg-gray-light rounded transition-all duration-300"></span>
+        <span class="burger-line block w-3 h-0.5 bg-gray-light rounded transition-all duration-300"></span>
+      </button>
+    </nav>
+
+    <div id="mobile-menu"
+         class="md:hidden hidden mt-2 py-4 px-6 rounded-2xl
+                bg-noir-surface/95 backdrop-blur-md border border-noir-border">
+      <ul class="flex flex-col gap-4">
+        <li><a href="#hero"       class="mobile-nav-link block text-sm text-gray-muted hover:text-gray-light transition-colors">Главная</a></li>
+        <li><a href="#cases"      class="mobile-nav-link block text-sm text-gray-muted hover:text-gray-light transition-colors">Кейсы</a></li>
+        <li><a href="#about"      class="mobile-nav-link block text-sm text-gray-muted hover:text-gray-light transition-colors">Обо мне</a></li>
+        <li><a href="#experience" class="mobile-nav-link block text-sm text-gray-muted hover:text-gray-light transition-colors">Опыт</a></li>
+        <li><a href="#articles"   class="mobile-nav-link block text-sm text-gray-muted hover:text-gray-light transition-colors">Статьи</a></li>
+        <li><a href="#contacts"   class="mobile-nav-link block text-sm text-gray-muted hover:text-gray-light transition-colors">Контакты</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<section id="hero" class="relative min-h-screen flex items-center hero-grid overflow-hidden">
+
+  <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-soft/10 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-mint/5 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute top-1/2 right-1/3 w-48 h-48 bg-rose-dust/5 rounded-full blur-2xl pointer-events-none"></div>
+
+  <div class="max-w-6xl mx-auto px-6 py-32 w-full">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+
+      <div class="fade-in">
+        <div class="inline-flex items-center gap-2 mb-6 px-3 py-1.5
+                    bg-indigo-soft/10 border border-indigo-soft/20 rounded-full">
+          <span class="w-1.5 h-1.5 rounded-full bg-mint animate-pulse"></span>
+          <span class="text-xs text-indigo-glow tracking-widest uppercase font-medium">
+            Маркетолог полного цикла · 17 лет опыта
+          </span>
+        </div>
+
+        <h1 class="font-serif text-5xl md:text-6xl text-gray-light leading-tight mb-6">
+          Мелентиева<br/>
+          <span class="italic text-indigo-glow">Александра</span>
+        </h1>
+
+        <p class="text-gray-muted text-lg leading-relaxed mb-10 max-w-md">
+          Строю маркетинг с нуля и до результата: от аналитики и стратегии
+          до контента, SMM, email и управления репутацией. FMCG, туризм,
+          ритейл, IT, девелопмент — работала в семи разных отраслях.
+        </p>
+
+        <div class="flex flex-wrap gap-4">
+          <a href="#cases"
+             class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-medium text-sm
+                    bg-indigo-soft text-white hover:bg-indigo-glow
+                    transition-all duration-300 shadow-glow-indigo">
+            Смотреть кейсы
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+          <a href="#contacts"
+             class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-medium text-sm
+                    border border-noir-border text-gray-muted
+                    hover:border-indigo-soft/50 hover:text-gray-light
+                    transition-all duration-300">
+            Связаться
+          </a>
+        </div>
+
+        <div class="flex gap-8 mt-12 pt-8 border-t border-noir-border">
+          <div>
+            <p class="text-2xl font-serif text-gray-light">17+</p>
+            <p class="text-xs text-gray-muted mt-1">лет опыта</p>
+          </div>
+          <div>
+            <p class="text-2xl font-serif text-gray-light">7</p>
+            <p class="text-xs text-gray-muted mt-1">отраслей</p>
+          </div>
+          <div>
+            <p class="text-2xl font-serif text-gray-light">360°</p>
+            <p class="text-xs text-gray-muted mt-1">маркетинг</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="fade-in flex justify-center md:justify-end">
+        <div class="relative">
+          <div class="absolute -inset-4 rounded-2xl border border-indigo-soft/20"></div>
+          <div class="absolute -inset-8 rounded-2xl border border-indigo-soft/10"></div>
+
+          <div class="relative w-72 h-72 md:w-80 md:h-80 rounded-2xl overflow-hidden
+                      border border-noir-border shadow-glow-indigo">
+            <!--
+              ✏️ ФОТО — замени src="#" на путь к своему фото.
+              Положи файл рядом с index.html и назови photo.jpg
+              Пример: src="photo.jpg"
+            -->
+            <img
+              id="hero-photo"
+              src="#"
+              alt="Мелентиева Александра — маркетолог"
+              class="w-full h-full object-cover"
+              onerror="this.style.display='none'; document.getElementById('hero-placeholder').style.display='flex';"
+            />
+            <div id="hero-placeholder"
+                 class="w-full h-full flex flex-col items-center justify-center
+                        bg-gradient-to-br from-noir-surface to-noir-bg hidden">
+              <div class="w-20 h-20 rounded-full bg-indigo-soft/20 flex items-center justify-center mb-3">
+                <svg class="w-10 h-10 text-indigo-soft/40" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+                </svg>
+              </div>
+              <p class="text-xs text-gray-muted">Добавь фото</p>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 h-24
+                        bg-gradient-to-t from-noir-bg/60 to-transparent"></div>
+          </div>
+
+          <div class="absolute -bottom-4 -right-4 px-4 py-2
+                      bg-noir-surface border border-mint/30 rounded-xl shadow-glow-mint">
+            <p class="text-xs text-mint font-medium">Открыта к проектам</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     CASES
+============================================================ -->
+<section id="cases" class="py-24">
+  <div class="max-w-6xl mx-auto px-6">
+
+    <div class="fade-in mb-16">
+      <p class="text-xs text-indigo-soft tracking-widest uppercase font-medium mb-3">Портфолио</p>
+      <h2 class="font-serif text-4xl md:text-5xl text-gray-light mb-4">Избранные кейсы</h2>
+      <p class="text-gray-muted max-w-md">
+        Реальные проекты из разных отраслей. Конкретные задачи, конкретные результаты.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- КЕЙС 1 -->
+      <div class="case-card fade-in cursor-pointer" onclick="openModal('modal-1')">
+        <div class="case-img-placeholder h-52">
+          <!--
+            ✏️ КЕЙС 1 — ИЗОБРАЖЕНИЕ
+            Положи файл рядом с index.html, назови case1.jpg
+            Замени src="#" на src="case1.jpg"
+          -->
+          <img
+            src="#"
+            alt="Туристическое агентство МЦО Юнион"
+            onerror="this.parentNode.innerHTML = getPlaceholderHTML('Туризм / МЦО Юнион');"
+          />
+        </div>
+        <div class="p-6">
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tag">Туризм</span>
+            <span class="tag tag-mint">Контент</span>
+            <span class="tag tag-rose">SEO</span>
+          </div>
+          <h3 class="text-gray-light font-medium text-lg mb-2 leading-snug">
+            Комплексный маркетинг туристического агентства
+          </h3>
+          <p class="text-gray-muted text-sm leading-relaxed mb-5">
+            Построила маркетинг с нуля в МЦО Юнион: от аналитики сезонности
+            и SEO-статей до email-рассылок, программ лояльности и управления
+            репутацией в геосервисах.
+          </p>
+          <div class="flex items-center gap-3 mb-5 p-3 rounded-lg bg-noir-bg border border-noir-border">
+            <span class="text-mint text-lg font-serif">Full-cycle</span>
+            <span class="text-xs text-gray-muted">стратегия / контент / реклама / репутация</span>
+          </div>
+          <button onclick="event.stopPropagation(); openModal('modal-1')" class="btn-case">
+            Смотреть кейс →
+          </button>
+        </div>
+      </div>
+
+      <!-- КЕЙС 2 -->
+      <div class="case-card fade-in cursor-pointer" onclick="openModal('modal-2')">
+        <div class="case-img-placeholder h-52">
+          <!--
+            ✏️ КЕЙС 2 — ИЗОБРАЖЕНИЕ
+            Замени src="#" на src="case2.jpg"
+          -->
+          <img
+            src="#"
+            alt="Вывод новых брендов на рынок — ЛВЗ Саранский"
+            onerror="this.parentNode.innerHTML = getPlaceholderHTML('FMCG / ЛВЗ Саранский');"
+          />
+        </div>
+        <div class="p-6">
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tag">FMCG</span>
+            <span class="tag tag-mint">Бренд</span>
+            <span class="tag">Event</span>
+          </div>
+          <h3 class="text-gray-light font-medium text-lg mb-2 leading-snug">
+            Вывод торговых марок на рынок — ЛВЗ Саранский
+          </h3>
+          <p class="text-gray-muted text-sm leading-relaxed mb-5">
+            Более 9 лет в компании: от разработки продукта и дизайна этикеток
+            до PR-стратегий, HoReCa-продвижения и организации мероприятий
+            с участием звёзд.
+          </p>
+          <div class="flex items-center gap-3 mb-5 p-3 rounded-lg bg-noir-bg border border-noir-border">
+            <span class="text-mint text-lg font-serif">9 лет</span>
+            <span class="text-xs text-gray-muted">продакт → специалист → PR-менеджер</span>
+          </div>
+          <button onclick="event.stopPropagation(); openModal('modal-2')" class="btn-case">
+            Смотреть кейс →
+          </button>
+        </div>
+      </div>
+
+      <!-- КЕЙС 3 -->
+      <div class="case-card fade-in cursor-pointer" onclick="openModal('modal-3')">
+        <div class="case-img-placeholder h-52">
+          <!--
+            ✏️ КЕЙС 3 — ИЗОБРАЖЕНИЕ
+            Замени src="#" на src="case3.jpg"
+          -->
+          <img
+            src="#"
+            alt="Маркетинг ТРК Огарёв Плаза"
+            onerror="this.parentNode.innerHTML = getPlaceholderHTML('Ритейл / ТРК');"
+          />
+        </div>
+        <div class="p-6">
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tag">Ритейл</span>
+            <span class="tag tag-rose">ATL/BTL</span>
+            <span class="tag tag-mint">Event</span>
+          </div>
+          <h3 class="text-gray-light font-medium text-lg mb-2 leading-snug">
+            Маркетинговая стратегия торгового центра
+          </h3>
+          <p class="text-gray-muted text-sm leading-relaxed mb-5">
+            Комплексное продвижение ТРК Огарёв Плаза: медиапланирование,
+            BTL и ATL-мероприятия, программы лояльности для посетителей
+            и индивидуальные воронки для арендаторов.
+          </p>
+          <div class="flex items-center gap-3 mb-5 p-3 rounded-lg bg-noir-bg border border-noir-border">
+            <span class="text-mint text-lg font-serif">↑</span>
+            <span class="text-xs text-gray-muted">трафик / лояльность / средний чек</span>
+          </div>
+          <button onclick="event.stopPropagation(); openModal('modal-3')" class="btn-case">
+            Смотреть кейс →
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     ABOUT
+============================================================ -->
+<section id="about" class="py-24 border-t border-noir-border">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-16 items-start">
+
+      <div class="fade-in">
+        <p class="text-xs text-indigo-soft tracking-widest uppercase font-medium mb-3">Обо мне</p>
+        <h2 class="font-serif text-4xl md:text-5xl text-gray-light mb-8">
+          Маркетинг — это<br/>
+          <span class="italic text-indigo-glow">стратегия и смысл</span>
+        </h2>
+
+        <div class="space-y-4 text-gray-muted leading-relaxed">
+          <p>
+            Занимаюсь маркетингом с 2008 года. Начинала как продакт-менеджер
+            на производстве — разрабатывала продукты с нуля, от формы бутылки
+            до патентования товарного знака. Со временем выросла до маркетолога
+            полного цикла.
+          </p>
+          <p>
+            За эти годы поработала в семи отраслях: FMCG, туризм, ритейл,
+            девелопмент, производство, HoReCa и медицина. В каждой — строила
+            процессы либо с нуля, либо реанимировала то, что перестало работать.
+          </p>
+          <p>
+            Умею всё: аналитика и стратегия, контент и SEO, email, SMM,
+            event-маркетинг, репутация, бюджетирование и отчётность.
+            Работаю самостоятельно и с подрядчиками. Активно использую
+            нейросети в рабочих процессах — от промпт-инжиниринга
+            до генерации визуала и видеоконтента.
+          </p>
+          <p>
+            Параллельно пишу художественную прозу — это помогает чувствовать
+            аудиторию и делать тексты живыми, а не просто правильными.
+          </p>
+        </div>
+      </div>
+
+      <div class="fade-in">
+        <div class="space-y-3">
+
+          <div class="p-4 rounded-xl bg-noir-surface border border-noir-border
+                      hover:border-indigo-soft/30 transition-colors duration-300">
+            <div class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-lg bg-indigo-soft/10 flex items-center justify-center text-indigo-soft shrink-0">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+              </span>
+              <div>
+                <p class="text-gray-light text-sm font-medium">Контент, копирайтинг и SEO</p>
+                <p class="text-gray-muted text-xs">Статьи, лонгриды, описания, email, пресс-релизы</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-noir-surface border border-noir-border
+                      hover:border-mint/30 transition-colors duration-300">
+            <div class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-lg bg-mint/10 flex items-center justify-center text-mint shrink-0">
+                <svg class="w-4 h-4                " fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+              </span>
+              <div>
+                <p class="text-gray-light text-sm font-medium">Аналитика и стратегия</p>
+                <p class="text-gray-muted text-xs">Юнит-экономика, CAC, LTV, ROMI, медиапланирование</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-noir-surface border border-noir-border
+                      hover:border-rose-dust/30 transition-colors duration-300">
+            <div class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-lg bg-rose-dust/10 flex items-center justify-center text-rose-dust shrink-0">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </span>
+              <div>
+                <p class="text-gray-light text-sm font-medium">SMM и сообщества</p>
+                <p class="text-gray-muted text-xs">Соцсети, прогрев, вовлечённость, таргет</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-noir-surface border border-noir-border
+                      hover:border-indigo-soft/30 transition-colors duration-300">
+            <div class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-lg bg-indigo-soft/10 flex items-center justify-center text-indigo-soft shrink-0">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+                </svg>
+              </span>
+              <div>
+                <p class="text-gray-light text-sm font-medium">Репутация и геосервисы</p>
+                <p class="text-gray-muted text-xs">2ГИС, Яндекс Карты, Google, отзывы, SERM</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-noir-surface border border-noir-border
+                      hover:border-mint/30 transition-colors duration-300">
+            <div class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-lg bg-mint/10 flex items-center justify-center text-mint shrink-0">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                </svg>
+              </span>
+              <div>
+                <p class="text-gray-light text-sm font-medium">ИИ и нейросети</p>
+                <p class="text-gray-muted text-xs">Промпт-инжиниринг, генерация визуала и видеоконтента</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-noir-surface border border-noir-border
+                      hover:border-rose-dust/30 transition-colors duration-300">
+            <div class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-lg bg-rose-dust/10 flex items-center justify-center text-rose-dust shrink-0">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+              </span>
+              <div>
+                <p class="text-gray-light text-sm font-medium">Event-маркетинг</p>
+                <p class="text-gray-muted text-xs">Мероприятия, BTL/ATL, программы лояльности</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     EXPERIENCE — опыт работы
+============================================================ -->
+<section id="experience" class="py-24 border-t border-noir-border">
+  <div class="max-w-6xl mx-auto px-6">
+
+    <div class="fade-in mb-12">
+      <p class="text-xs text-indigo-soft tracking-widest uppercase font-medium mb-3">Карьера</p>
+      <h2 class="font-serif text-4xl md:text-5xl text-gray-light mb-4">Опыт работы</h2>
+      <p class="text-gray-muted max-w-md">
+        17 лет в маркетинге — от продакт-менеджера на производстве
+        до маркетолога полного цикла.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+
+      <!-- Левая колонка -->
+      <div class="space-y-8">
+
+        <div class="timeline-item fade-in">
+          <div class="mb-1 flex items-center gap-3">
+            <span class="text-xs text-gray-muted font-mono">2022 — наст. вр.</span>
+            <span class="tag tag-mint">Текущее место</span>
+          </div>
+          <h3 class="text-gray-light font-medium mb-1">Маркетолог</h3>
+          <p class="text-indigo-glow text-sm mb-2">МЦО Юнион, туристическое агентство</p>
+          <p class="text-gray-muted text-sm leading-relaxed">
+            Маркетинг с нуля: стратегия, SEO-контент, email-рассылки,
+            программы лояльности, управление репутацией в геосервисах,
+            SMM, работа с подрядчиками.
+          </p>
+        </div>
+
+        <div class="timeline-item fade-in">
+          <div class="mb-1">
+            <span class="text-xs text-gray-muted font-mono">2020 — 2022</span>
+          </div>
+          <h3 class="text-gray-light font-medium mb-1">Маркетолог / Специалист по рекламе</h3>
+          <p class="text-indigo-glow text-sm mb-2">ТРК Огарёв Плаза</p>
+          <p class="text-gray-muted text-sm leading-relaxed">
+            Медиапланирование, BTL и ATL-активности, event-маркетинг,
+            программы лояльности для посетителей, индивидуальные
+            маркетинговые воронки для арендаторов.
+          </p>
+        </div>
+
+        <div class="timeline-item fade-in">
+          <div class="mb-1">
+            <span class="text-xs text-gray-muted font-mono">2019 — 2020</span>
+          </div>
+          <h3 class="text-gray-light font-medium mb-1">Специалист по маркетингу</h3>
+          <p class="text-indigo-glow text-sm mb-2">Застройщик / Девелопмент</p>
+          <p class="text-gray-muted text-sm leading-relaxed">
+            Продвижение жилых комплексов: digital-стратегия, контент,
+            работа с репутацией, лидогенерация.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Правая колонка -->
+      <div class="space-y-8">
+
+        <div class="timeline-item fade-in">
+          <div class="mb-1">
+            <span class="text-xs text-gray-muted font-mono">2010 — 2019</span>
+          </div>
+          <h3 class="text-gray-light font-medium mb-1">Продакт-менеджер → PR-менеджер</h3>
+          <p class="text-indigo-glow text-sm mb-2">ЛВЗ Саранский, FMCG</p>
+          <p class="text-gray-muted text-sm leading-relaxed">
+            9 лет в компании. Разработка продуктов и торговых марок с нуля:
+            дизайн этикеток, патентование, вывод на рынок, HoReCa-продвижение,
+            PR-стратегии, event с участием звёзд.
+          </p>
+        </div>
+
+        <div class="timeline-item fade-in">
+          <div class="mb-1">
+            <span class="text-xs text-gray-muted font-mono">2008 — 2010</span>
+          </div>
+          <h3 class="text-gray-light font-medium mb-1">Начало карьеры</h3>
+          <p class="text-indigo-glow text-sm mb-2">Маркетинг и реклама</p>
+          <p class="text-gray-muted text-sm leading-relaxed">
+            Первые проекты в маркетинге: реклама, копирайтинг,
+            работа с подрядчиками, организация мероприятий.
+          </p>
+        </div>
+
+        <div class="fade-in p-5 rounded-xl bg-noir-surface border border-noir-border">
+          <p class="text-xs text-indigo-soft uppercase tracking-widest mb-3">Образование</p>
+          <div class="space-y-3">
+            <div>
+              <p class="text-gray-light text-sm font-medium">Высшее образование</p>
+              <p class="text-gray-muted text-xs">Маркетинг / Менеджмент</p>
+            </div>
+            <div class="border-t border-noir-border pt-3">
+              <p class="text-gray-light text-sm font-medium">Дополнительное образование</p>
+              <p class="text-gray-muted text-xs">
+                Курсы по SEO, SMM, email-маркетингу, нейросетям, промпт-инжинирингу
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     ARTICLES
+============================================================ -->
+<section id="articles" class="py-24 border-t border-noir-border">
+  <div class="max-w-6xl mx-auto px-6">
+
+    <div class="fade-in mb-12">
+      <p class="text-xs text-indigo-soft tracking-widest uppercase font-medium mb-3">Публикации</p>
+      <h2 class="font-serif text-4xl md:text-5xl text-gray-light mb-4">Статьи</h2>
+      <p class="text-gray-muted max-w-md">
+        Пишу о маркетинге без воды: стратегии, инструменты, разборы из практики.
+      </p>
+    </div>
+
+    <div class="space-y-1 fade-in">
+
+      <a href="#"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="article-row group flex items-center gap-6 py-5 px-4 rounded-xl
+                border border-transparent hover:border-noir-border hover:bg-noir-surface
+                transition-all duration-300">
+        <span class="text-gray-muted text-xs font-mono w-24 shrink-0">2025.01</span>
+        <span class="text-xs text-indigo-soft/70 w-32 shrink-0 hidden sm:block">Туризм</span>
+        <span class="text-gray-light text-sm group-hover:text-indigo-glow transition-colors duration-300 flex-1">
+          Как выстроить email-маркетинг в туристическом агентстве с нуля
+        </span>
+        <svg class="w-4 h-4 text-gray-muted group-hover:text-indigo-soft
+                    transition-all duration-300 group-hover:translate-x-1 shrink-0"
+             fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+
+      <a href="#"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="article-row group flex items-center gap-6 py-5 px-4 rounded-xl
+                border border-transparent hover:border-noir-border hover:bg-noir-surface
+                transition-all duration-300">
+        <span class="text-gray-muted text-xs font-mono w-24 shrink-0">2024.10</span>
+        <span class="text-xs text-mint/70 w-32 shrink-0 hidden sm:block">Репутация</span>
+        <span class="text-gray-light text-sm group-hover:text-indigo-glow transition-colors duration-300 flex-1">
+          Управление репутацией в геосервисах: что реально работает
+        </span>
+        <svg class="w-4 h-4 text-gray-muted group-hover:text-indigo-soft
+                    transition-all duration-300 group-hover:translate-x-1 shrink-0"
+             fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+
+      <a href="#"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="article-row group flex items-center gap-6 py-5 px-4 rounded-xl
+                border border-transparent hover:border-noir-border hover:bg-noir-surface
+                transition-all duration-300">
+        <span class="text-gray-muted text-xs font-mono w-24 shrink-0">2024.07</span>
+        <span class="text-xs text-rose-dust/70 w-32 shrink-0 hidden sm:block">Нейросети</span>
+        <span class="text-gray-light text-sm group-hover:text-indigo-glow transition-colors duration-300 flex-1">
+          Нейросети в маркетинге: как я использую ИИ в реальных рабочих задачах
+        </span>
+        <svg class="w-4 h-4 text-gray-muted group-hover:text-indigo-soft
+                    transition-all duration-300 group-hover:translate-x-1 shrink-0"
+             fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+
+      <a href="#"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="article-row group flex items-center gap-6 py-5 px-4 rounded-xl
+                border border-transparent hover:border-noir-border hover:bg-noir-surface
+                transition-all duration-300">
+        <span class="text-gray-muted text-xs font-mono w-24 shrink-0">2024.04</span>
+        <span class="text-xs text-indigo-soft/70 w-32 shrink-0 hidden sm:block">FMCG</span>
+        <span class="text-gray-light text-sm group-hover:text-indigo-glow transition-colors duration-300 flex-1">
+          Как вывести новый бренд на рынок с ограниченным бюджетом
+        </span>
+        <svg class="w-4 h-4 text-gray-muted group-hover:text-indigo-soft
+                    transition-all duration-300 group-hover:translate-x-1 shrink-0"
+             fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+
+      <a href="#"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="article-row group flex items-center gap-6 py-5 px-4 rounded-xl
+                border border-transparent hover:border-noir-border hover:bg-noir-surface
+                transition-all duration-300">
+        <span class="text-gray-muted text-xs font-mono w-24 shrink-0">2024.01</span>
+        <span class="text-xs text-mint/70 w-32 shrink-0 hidden sm:block">Стратегия</span>
+        <span class="text-gray-light text-sm group-hover:text-indigo-glow transition-colors duration-300 flex-1">
+          Маркетинг торгового центра: от медиаплана до программы лояльности
+        </span>
+        <svg class="w-4 h-4 text-gray-muted group-hover:text-indigo-soft
+                    transition-all duration-300 group-hover:translate-x-1 shrink-0"
+             fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     CONTACTS
+============================================================ -->
+<section id="contacts" class="py-24 border-t border-noir-border">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="fade-in max-w-2xl">
+      <p class="text-xs text-indigo-soft tracking-widest uppercase font-medium mb-3">Контакты</p>
+      <h2 class="font-serif text-4xl md:text-5xl text-gray-light mb-6">
+        Есть проект?<br/>
+        <span class="italic text-indigo-glow">Давайте поговорим.</span>
+      </h2>
+      <p class="text-gray-muted leading-relaxed mb-10">
+        Открыта к новым проектам, консультациям и интересным коллаборациям.
+        Напишите — отвечу в течение дня.
+      </p>
+
+      <a href="mailto:melentievasandra@gmail.com"
+         class="inline-flex items-center gap-3 px-8 py-4 rounded-2xl
+                bg-indigo-soft text-white font-medium
+                hover:bg-indigo-glow transition-all duration-300
+                shadow-glow-indigo mb-10">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+        </svg>
+        melentievasandra@gmail.com
+      </a>
+
+      <div class="flex gap-4">
+        <a href="https://t.me/MeleSandra"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="social-btn">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.008 9.46c-.148.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L6.26 14.4l-2.95-.924c-.642-.2-.654-.642.136-.953l11.527-4.444c.535-.194 1.003.13.59.169z"/>
+          </svg>
+          <span class="text-sm">Telegram</span>
+        </a>
+
+        <a href="https://vk.com/aleksandramilentieva"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="social-btn">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12.785 16.241s.288-.032.436-.194c.136-.148.132-.427.132-.427s-.02-1.304.585-1.496c.598-.19 1.365 1.26 2.179 1.815.615.418 1.082.326 1.082.326l2.172-.03s1.135-.071.597-1.084c-.044-.078-.314-.661-1.617-1.868-1.363-1.262-1.181-1.057.461-3.239.999-1.328 1.397-2.14 1.272-2.487-.12-.331-.854-.244-.854-.244l-2.444.015s-.181-.025-.315.055c-.132.079-.216.262-.216.262s-.387 1.03-.903 1.906c-1.088 1.847-1.523 1.945-1.701 1.83-.414-.267-.31-1.073-.31-1.646 0-1.79.271-2.535-.528-2.727-.265-.064-.46-.106-1.138-.113-.871-.009-1.608.003-2.025.207-.277.136-.491.44-.361.457.162.022.528.099.722.363.25.341.241 1.107.241 1.107s.144 2.108-.335 2.369c-.328.176-.778-.183-1.744-1.827-.496-.859-.871-1.81-.871-1.81s-.072-.176-.202-.271c-.157-.115-.376-.151-.376-.151l-2.322.015s-.348.01-.476.161c-.114.135-.009.414-.009.414s1.819 4.255 3.876 6.4c1.888 1.969 4.03 1.84 4.03 1.84h.972z"/>
+          </svg>
+          <span class="text-sm">ВКонтакте</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer class="border-t border-noir-border py-8">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row
+              items-center justify-between gap-4">
+    <p class="text-gray-muted text-xs">
+      © 2025 Мелентиева Александра. Все права защищены.
+    </p>
+    <div class="flex items-center gap-6">
+      <a href="https://t.me/MeleSandra"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="text-gray-muted text-xs hover:text-indigo-glow transition-colors duration-300">
+        Telegram
+      </a>
+      <a href="https://vk.com/aleksandramilentieva"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="text-gray-muted text-xs hover:text-indigo-glow transition-colors duration-300">
+        ВКонтакте
+      </a>
+      <a href="mailto:melentievasandra@gmail.com"
+         class="text-gray-muted text-xs hover:text-indigo-glow transition-colors duration-300">
+        Email
+      </a>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ============================================================
+     МОДАЛЬНЫЕ ОКНА КЕЙСОВ
+============================================================ -->
+
+<!-- Модалка Кейс 1 — МЦО Юнион -->
+<div id="modal-1"
+     class="modal-overlay fixed inset-0 z-50 hidden items-center justify-center p-4"
+     onclick="closeModalOnOverlay(event, 'modal-1')">
+  <div class="modal-content relative w-full max-w-2xl max-h-[90vh] overflow-y-auto
+              bg-noir-surface border border-noir-border rounded-2xl p-8">
+    <button onclick="closeModal('modal-1')"
+            class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center
+                   text-gray-muted hover:text-gray-light bg-noir-bg rounded-lg transition-colors duration-300">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+    <div class="flex flex-wrap gap-2 mb-6">
+      <span class="tag">Туризм</span>
+      <span class="tag tag-mint">Full-cycle</span>
+      <span class="tag tag-rose">Email</span>
+    </div>
+    <h3 class="font-serif text-2xl text-gray-light mb-2">
+      Комплексный маркетинг туристического агентства
+    </h3>
+    <p class="text-gray-muted text-sm mb-8">МЦО Юнион · 2022 — настоящее время</p>
+    <div class="space-y-6 text-sm text-gray-muted leading-relaxed">
+      <div>
+        <p class="text-xs text-indigo-soft uppercase tracking-widest mb-2">Задача</p>
+        <p>Выстроить маркетинг с нуля в туристическом агентстве: привлекать клиентов в высокий сезон, удерживать в низкий, формировать базу лояльных туристов и поддерживать репутацию онлайн.</p>
+      </div>
+      <div>
+        <p class="text-xs text-indigo-soft uppercase tracking-widest mb-2">Что сделано</p>
+        <ul class="space-y-2">
+          <li class="flex gap-2"><span class="text-mint shrink-0">→</span> Анализ сезонности спроса и разработка контент-стратегии под каждый период</li>
+          <li class="flex gap-2"><span class="text-mint          shrink-0">→</span> SEO-статьи под тематику туризма: горящие туры, страны, лайфхаки для путешественников</li>
+          <li class="flex gap-2"><span class="text-mint shrink-0">→</span> Email-рассылки: серия приветственных писем, прогрев, сезонные предложения</li>
+          <li class="flex gap-2"><span class="text-mint shrink-0">→</span> Программы лояльности: бонусная система, реферальная механика</li>
+          <li class="flex gap-2"><span class="text-mint shrink-0">→</span> Управление репутацией в 2ГИС, Яндекс Картах, Google — работа с отзывами, SERM</li>
+          <li class="flex gap-2"><span class="text-mint shrink-0">→</span> SMM: ведение соцсетей, контент-план, прогрев аудитории перед сезоном</li>
+        </ul>
+      </div>
+      <div class="grid grid-cols-3 gap-3">
+        <div class="p-4 rounded-xl bg-noir-bg border border-noir-border text-center">
+          <p class="text-2xl font-serif text-mint mb-1">+</p>
+          <p class="text-xs text-gray-muted">база лояльных клиентов</p>
+        </div>
+        <div class="p-4 rounded-xl bg-noir-bg border border-noir-border text-center">
+          <p class="text-2xl font-serif text-indigo-glow mb-1">SEO</p>
+          <p class="text-xs text-gray-muted">органический трафик</p>
+        </div>
+        <div class="p-4 rounded-xl bg-noir-bg border border-noir-border text-center">
+          <p class="text-2xl font-serif text-rose-dust mb-1">360°</p>
+          <p class="text-xs text-gray-muted">комплексный маркетинг</p>
+        </div>
+      </div>
+    </div>
+    <!--
+      ✏️ КЕЙС 1 — замени href на ссылку Google Doc или страницу кейса
+    -->
+    <a href="#"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-xl
+              bg-indigo-soft text-white text-sm font-medium
+              hover:bg-indigo-glow transition-all duration-300">
+      Открыть полный кейс
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+      </svg>
+    </a>
+  </div>
+</div>
+
+
+<!-- Модалка Кейс 2 — ЛВЗ Саранский -->
+<div id="modal-2"
+     class="modal-overlay fixed inset-0 z-50 hidden items-center justify-center p-4"
+     onclick="closeModalOnOverlay(event, 'modal-2')">
+  <div class="modal-content relative w-full max-w-2xl max-h-[90vh] overflow-y-auto
+              bg-noir-surface border border-noir-border rounded-2xl p-8">
+    <button onclick="closeModal('modal-2')"
+            class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center
+                   text-gray-muted hover:text-gray-light bg-noir-bg rounded-lg transition-colors duration-300">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+    <div class="flex flex-wrap gap-2 mb-6">
+      <span class="tag">FMCG</span>
+      <span class="tag tag-mint">Бренд</span>
+      <span class="tag">HoReCa</span>
+      <span class="tag tag-rose">Event</span>
+    </div>
+    <h3 class="font-serif text-2xl text-gray-light mb-2">
+      Вывод торговых марок на рынок
+    </h3>
+    <p class="text-gray-muted text-sm mb-8">ЛВЗ Саранский · 2010 — 2019 · 9 лет</p>
+    <div class="space-y-6 text-sm text-gray-muted leading-relaxed">
+      <div>
+        <p class="text-xs text-indigo-soft uppercase tracking-widest mb-2">Задача</p>
+        <p>Разрабатывать новые продукты и торговые марки с нуля, выводить их на рынок, формировать дистрибуцию в HoReCa и строить узнаваемость бренда через PR и event-активности.</p>
+      </div>
+      <div>
+        <p class="text-xs text-indigo-soft uppercase tracking-widest mb-2">Что сделано</p>
+        <ul class="space-y-2">
+          <li class="flex gap-2"><span class="text-mint shrink-0">→</span> Разработка продуктов с нуля: рецептура, форма, дизайн этикеток и упаковки</li>
+          <li class="flex gap-2"><span class="text-mint shrink-0">→</span> Патентование товарных знаков и юридическая защита брендов</li>
+          <li class="flex gap-2"><span class="text-mint shrink-0">→</span> Вывод новых марок на рынок: ценообразование, дистрибуция, трейд-маркетинг</li>
+          <li class="flex gap-2"><span class="text-mint shrink-0">→</span> HoReCa-продвижение: работа с ресторанами, барами и отелями</li>
+          <li class="flex gap-2"><span class="text-mint shrink-0">→</span> PR-стратегии: публикации, пресс-мероприятия, работа с медиа</li>
+          <li class="flex gap-2"><span class="text-mint shrink-0">→</span> Event-маркетинг: организация мероприятий с участием известных артистов</li>
+        </ul>
+      </div>
+      <div class="grid grid-cols-3 gap-3">
+        <div class="p-4 rounded-xl bg-noir-bg border border-noir-border text-center">
+          <p class="text-2xl font-serif text-mint mb-1">9 лет</p>
+          <p class="text-xs text-gray-muted">в компании</p>
+        </div>
+        <div class="p-4 rounded-xl bg-noir-bg border border-noir-border text-center">
+          <p class="text-2xl font-serif text-indigo-glow mb-1">New</p>
+          <p class="text-xs text-gray-muted">торговых марок запущено</p>
+        </div>
+        <div class="p-4 rounded-xl bg-noir-bg border border-noir-border text-center">
+          <p class="text-2xl font-serif text-rose-dust mb-1">PR</p>
+          <p class="text-xs text-gray-muted">федеральные публикации</p>
+        </div>
+      </div>
+    </div>
+    <!--
+      ✏️ КЕЙС 2 — замени href на ссылку Google Doc или страницу кейса
+    -->
+    <a href="#"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-xl
+              bg-indigo-soft text-white text-sm font-medium
+              hover:bg-indigo-glow transition-all duration-300">
+      Открыть полный кейс
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+      </svg>
+    </a>
+  </div>
+</div>
+
+
+<!-- Модалка Кейс 3 — ТРК Огарёв Плаза -->
+<div id="modal-3"
+     class="modal-overlay fixed inset-0 z-50 hidden items-center justify-center p-4"
+     onclick="closeModalOnOverlay(event, 'modal-3')">
+  <div class="modal-content relative w-full max-w-2xl max-h-[90vh] overflow-y-auto
+              bg-noir-surface border border-noir-border rounded-2xl p-8">
+    <button onclick="closeModal('modal-3')"
+            class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center
+                   text-gray-muted hover:text-gray-light bg-noir-bg rounded-lg transition-colors duration-300">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+    <div class="flex flex-wrap gap-2 mb-6">
+      <span class="tag">Ритейл</span>
+      <span class="tag tag-rose">ATL/BTL</span>
+      <span class="tag tag-mint">Event</span>
+      <span class="tag">Лояльность</span>
+    </div>
+    <h3 class="font-serif text-2xl text-gray-light mb-2">
+      Маркетинговая стратегия торгового центра
+    </h3>
+    <p class="text-gray-muted text-sm mb-8">ТРК Огарёв Плаза · 2020 — 2022</p>
+    <div class="space-y-6 text-sm text-gray-muted leading-relaxed">
+      <div>
+        <p class="text-xs text-indigo-soft uppercase tracking-widest mb-2">Задача</p>
+        <p>Увеличить трафик торгового центра, повысить лояльность посетителей и помочь арендаторам наращивать выручку через совместные маркетинговые активности.</p>
+      </div>
+      <div>
+        <p class="text-xs text-indigo-soft uppercase tracking-widest mb-2">Что сделано</p>
+        <ul class="space-y-2">
+          <li class="flex gap-2"><span class="text-mint shrink-0">→</span> Медиапланирование: распределение бюджета по каналам и периодам</li>
+          <li class="flex gap-2"><span class="text-mint shrink-0">→</span> ATL-активности: наружная реклама, радио, digital-размещения</li>
+          <li class="flex gap-2"><span class="text-mint shrink-0">→</span> BTL-мероприятия: промо-акции, розыгрыши, сезонные кампании</li>
+          <li class="flex gap-2"><span class="text-mint shrink-0">→</span> Event-маркетинг: праздничные мероприятия, детские активности, тематические недели</li>
+          <li class="flex gap-2"><span class="text-mint shrink-0">→</span> Программа лояльности для посетителей: бонусная карта, персональные предложения</li>
+          <li class="flex gap-2"><span class="text-mint shrink-0">→</span> Индивидуальные воронки продаж для арендаторов разных категорий</li>
+        </ul>
+      </div>
+      <div class="grid grid-cols-3 gap-3">
+        <div class="p-4 rounded-xl bg-noir-bg border border-noir-border text-center">
+          <p class="text-2xl font-serif text-mint mb-1">↑</p>
+          <p class="text-xs text-gray-muted">трафик ТЦ</p>
+        </div>
+        <div class="p-4 rounded-xl bg-noir-bg border border-noir-border text-center">
+          <p class="text-2xl font-serif text-indigo-glow mb-1">BTL</p>
+          <p class="text-xs text-gray-muted">акции и события</p>
+        </div>
+        <div class="p-4 rounded-xl bg-noir-bg border border-noir-border text-center">
+          <p class="text-2xl font-serif text-rose-dust mb-1">+</p>
+          <p class="text-xs text-gray-muted">выручка арендаторов</p>
+        </div>
+      </div>
+    </div>
+    <!--
+      ✏️ КЕЙС 3 — замени href на ссылку Google Doc или страницу кейса
+    -->
+    <a href="#"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-xl
+              bg-indigo-soft text-white text-sm font-medium
+              hover:bg-indigo-glow transition-all duration-300">
+      Открыть полный кейс
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+      </svg>
+    </a>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     JAVASCRIPT
+============================================================ -->
+<script>
+
+  function getPlaceholderHTML(label) {
+    return `
+      <div style="
+        width:100%; height:100%;
+        display:flex; flex-direction:column;
+        align-items:center; justify-content:center;
+        background: linear-gradient(135deg, #13131f 0%, #1a1a2e 50%, #16213e 100%);
+        border-radius: 12px 12px 0 0;
+      ">
+        <div style="
+          width:48px; height:48px; border-radius:12px;
+          background:rgba(99,102,241,0.12);
+          display:flex; align-items:center; justify-content:center;
+          margin-bottom:10px;
+        ">
+          <svg width="24" height="24" fill="none" stroke="#6366f1" stroke-width="1.5" viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 15l-5-5L5 21"/>
+          </svg>
+        </div>
+        <p style="font-size:11px; color:#4b5563; font-family:Inter,sans-serif;">${label}</p>
+      </div>
+    `;
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const heroPhoto       = document.getElementById('hero-photo');
+    const heroPlaceholder = document.getElementById('hero-placeholder');
+    if (
+      heroPhoto &&
+      (!heroPhoto.src ||
+        heroPhoto.src === window.location.href ||
+        heroPhoto.getAttribute('src') === '#')
+    ) {
+      heroPhoto.style.display = 'none';
+      heroPlaceholder.style.display = 'flex';
+    }
+  });
+
+  const burgerBtn   = document.getElementById('burger-btn');
+  const mobileMenu  = document.getElementById('mobile-menu');
+  const burgerLines = document.querySelectorAll('.burger-line');
+
+  burgerBtn.addEventListener('click', () => {
+    const isOpen = !mobileMenu.classList.contains('hidden');
+    mobileMenu.classList.toggle('hidden');
+    if (!isOpen) {
+      burgerLines[0].style.transform = 'translateY(6px) rotate(45deg)';
+      burgerLines[1].style.opacity   = '0';
+      burgerLines[2].style.transform = 'translateY(-6px) rotate(-45deg)';
+      burgerLines[2].style.width     = '20px';
+    } else {
+      burgerLines[0].style.transform = '';
+      burgerLines[1].style.opacity   = '';
+      burgerLines[2].style.transform = '';
+      burgerLines[2].style.width     = '';
+    }
+  });
+
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+      burgerLines[0].style.transform = '';
+      burgerLines[1].style.opacity   = '';
+      burgerLines[2].style.transform = '';
+      burgerLines[2].style.width     = '';
+    });
+  });
+
+  function openModal(id) {
+    const modal = document.getElementById(id);
+    if (!modal) return;
+    modal.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(id) {
+    const modal = document.getElementById(id);
+    if (!modal) return;
+    modal.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+
+  function closeModalOnOverlay(event, id) {
+    if (event.target === document.getElementById(id)) {
+      closeModal(id);
+    }
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      ['modal-1', 'modal-2', 'modal-3'].forEach(closeModal);
+    }
+  });
+
+  const fadeElements = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -40px 0px'
+  });
+  fadeElements.forEach(el => observer.observe(el));
+
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 120;
+      if (window.scrollY >= sectionTop) {
+        current = section.getAttribute('id');
+      }
+    });
+    navLinks.forEach(link => {
+      link.style.color = '';
+      if (link.getAttribute('href') === `#${current}`) {
+        link.style.color = '#d1d5db';
+      }
+    });
+  });
+
+  let lastScrollY = 0;
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+    if (currentScrollY > lastScrollY && currentScrollY > 100) {
+      header.style.transform = 'translateY(-100%)';
+    } else {
+      header.style.transform = 'translateY(0)';
+    }
+    lastScrollY = currentScrollY;
+  }, { passive: true });
+
+</script>
+
+</body>
+</html>
