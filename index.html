@@ -61,82 +61,405 @@ svg {
   align-items: center;
   gap: 14px;
 }
+/* ===== ФИКС ИКОНОК — ФИНАЛЬНАЯ ВЕРСИЯ ===== */
 
-/* ===== СПИСОК СТАТЕЙ ===== */
-.articles-intro {
-  margin-bottom: 1.5rem;
-  padding: 1.25rem 1.5rem;
-  background: rgba(127,127,127,0.06);
-  border-radius: 14px;
-  border-left: 3px solid var(--accent, #4F46E5);
+/* Базовое правило: все SVG не больше своего контейнера */
+svg {
+  display: inline-block;
+  vertical-align: middle;
 }
-.articles-intro p {
-  margin: 0;
+
+/* Иконка темы в шапке */
+.theme-toggle {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: 10px;
+  background: rgba(127,127,127,0.12);
+  border: 1px solid rgba(127,127,127,0.15);
+  color: #FBBF24;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.theme-toggle:hover {
+  background: rgba(127,127,127,0.22);
+  transform: rotate(15deg);
+}
+.theme-toggle svg,
+#themeIcon {
+  width: 18px !important;
+  height: 18px !important;
+  fill: none !important;
+  stroke: currentColor !important;
+  stroke-width: 2 !important;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+[data-theme="dark"] .theme-toggle { color: #A78BFA; }
+[data-theme="light"] .theme-toggle { color: #F59E0B; }
+
+/* Контактная карточка — выравнивание */
+.contact-card {
+  display: flex !important;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Иконки контактов — цветные кружки 44х44, SVG внутри 20х20 */
+.contact-icon {
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.contact-icon svg {
+  width: 20px !important;
+  height: 20px !important;
+  max-width: 20px;
+  max-height: 20px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Градиенты для разных типов контактов */
+.contact-icon--mail {
+  background: linear-gradient(135deg, #4F46E5, #7C3AED);
+}
+.contact-icon--phone {
+  background: linear-gradient(135deg, #10B981, #059669);
+}
+.contact-icon--telegram {
+  background: linear-gradient(135deg, #0EA5E9, #2563EB);
+}
+.contact-icon--location {
+  background: linear-gradient(135deg, #E11D74, #F43F5E);
+}
+
+/* Иконки внутри кнопок */
+.btn {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.5rem;
+}
+.btn-icon,
+.btn svg {
+  width: 16px !important;
+  height: 16px !important;
+  max-width: 16px;
+  max-height: 16px;
+  flex-shrink: 0;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+  
+/* ===== КАРТОЧКА-ВИТРИНА СТАТЕЙ ===== */
+.articles-showcase {
+  position: relative;
+  padding: 2.5rem 2rem;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(79,70,229,0.08), rgba(225,29,116,0.06));
+  border: 1px solid rgba(127,127,127,0.15);
+  overflow: hidden;
+}
+.articles-showcase::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(79,70,229,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.showcase-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.9rem;
+  background: rgba(127,127,127,0.12);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   color: var(--text-2, #aaa);
-  font-size: 0.95rem;
-  line-height: 1.6;
+  margin-bottom: 1.25rem;
+}
+.showcase-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4F46E5;
+  box-shadow: 0 0 0 4px rgba(79,70,229,0.2);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(79,70,229,0.2); }
+  50% { box-shadow: 0 0 0 8px rgba(79,70,229,0.05); }
 }
 
-.articles-list {
+.showcase-title {
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  font-weight: 800;
+  margin: 0 0 1rem 0;
+  line-height: 1.25;
+  position: relative;
+}
+.showcase-desc {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--text-2, #bbb);
+  margin: 0 0 1.5rem 0;
+  max-width: 760px;
+  position: relative;
+}
+
+.showcase-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.75rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 0.7rem;
+  position: relative;
+}
+.showcase-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.93rem;
+  color: var(--text-2, #ccc);
+  line-height: 1.5;
+}
+.feature-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4F46E5, #E11D74);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.showcase-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  padding: 1.25rem;
+  margin: 0 0 1.75rem 0;
+  background: rgba(127,127,127,0.07);
+  border-radius: 14px;
+  position: relative;
+}
+.stat-item { text-align: center; }
+.stat-num {
+  font-size: 1.8rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #4F46E5, #E11D74);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.1;
+  margin-bottom: 0.25rem;
+}
+.stat-label {
+  font-size: 0.8rem;
+  color: var(--text-3, #888);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.showcase-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.95rem 1.75rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #4F46E5, #E11D74);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 8px 24px rgba(79,70,229,0.35);
+  position: relative;
+  font-family: inherit;
+}
+.showcase-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(79,70,229,0.5);
+}
+.showcase-btn:active { transform: translateY(0); }
+.showcase-btn svg { transition: transform 0.25s ease; }
+.showcase-btn:hover svg { transform: translateX(4px); }
+
+@media (max-width: 600px){
+  .articles-showcase { padding: 1.75rem 1.25rem; }
+  .showcase-btn { width: 100%; justify-content: center; }
+}
+
+/* ===== МОДАЛЬНОЕ ОКНО ===== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-window {
+  width: 100%;
+  max-width: 640px;
+  max-height: 85vh;
+  background: var(--bg-1, #1a1a1a);
+  border: 1px solid rgba(127,127,127,0.2);
+  border-radius: 20px;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  overflow: hidden;
+  transform: scale(0.95) translateY(20px);
+  transition: transform 0.3s ease;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+}
+[data-theme="light"] .modal-window {
+  background: #fff;
+}
+.modal-overlay.active .modal-window {
+  transform: scale(1) translateY(0);
 }
 
-.article-link {
+.modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.5rem 1.75rem 1.25rem;
+  border-bottom: 1px solid rgba(127,127,127,0.15);
+}
+.modal-eyebrow {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-3, #888);
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+}
+#modalTitle {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+.modal-close {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: none;
+  background: rgba(127,127,127,0.12);
+  color: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s ease;
+}
+.modal-close:hover { background: rgba(127,127,127,0.22); }
+
+.modal-body {
+  padding: 1rem 1.75rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.modal-group { margin-bottom: 1.25rem; }
+.modal-group:last-child { margin-bottom: 0; }
+
+.modal-group-title {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #4F46E5;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.modal-link {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 1.1rem 1.4rem;
-  border-radius: 14px;
-  background: rgba(127,127,127,0.06);
-  border: 1px solid rgba(127,127,127,0.12);
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
   text-decoration: none;
   color: inherit;
-  transition: all 0.25s ease;
+  transition: background 0.2s ease;
+  margin-bottom: 0.25rem;
 }
-.article-link:hover {
-  transform: translateY(-2px);
-  background: rgba(127,127,127,0.10);
-  border-color: rgba(127,127,127,0.25);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+.modal-link:hover {
+  background: rgba(127,127,127,0.12);
+}
+.modal-link-title {
+  font-size: 0.95rem;
+  font-weight: 500;
+  flex: 1;
+}
+.modal-link-arrow {
+  color: var(--text-3, #888);
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+.modal-link:hover .modal-link-arrow {
+  color: #4F46E5;
+  transform: translate(2px, -2px);
 }
 
-.article-link-content { flex: 1; min-width: 0; }
-.article-link-category {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--accent, #4F46E5);
-  margin-bottom: 0.35rem;
-  font-weight: 600;
-}
-.article-link h3 {
-  margin: 0 0 0.3rem 0;
-  font-size: 1.1rem;
-  font-weight: 700;
-}
-.article-link p {
-  margin: 0;
-  font-size: 0.9rem;
-  color: var(--text-2, #aaa);
-  line-height: 1.5;
-}
-.article-link-arrow {
-  font-size: 1.5rem;
-  color: var(--accent, #4F46E5);
-  flex-shrink: 0;
-  transition: transform 0.25s ease;
-}
-.article-link:hover .article-link-arrow {
-  transform: translateX(4px);
+.modal-footer {
+  padding: 1rem 1.75rem 1.25rem;
+  border-top: 1px solid rgba(127,127,127,0.15);
+  font-size: 0.82rem;
+  color: var(--text-3, #888);
+  text-align: center;
 }
 
 @media (max-width: 600px){
-  .article-link { padding: 1rem; }
-  .article-link h3 { font-size: 1rem; }
-  .article-link p { font-size: 0.85rem; }
+  .modal-window { max-height: 90vh; border-radius: 16px; }
+  .modal-header { padding: 1.25rem 1.25rem 1rem; }
+  .modal-body { padding: 0.75rem 1.25rem; }
+  .modal-footer { padding: 0.85rem 1.25rem 1rem; }
+  #modalTitle { font-size: 1.05rem; }
 }
   
 <style>
@@ -651,132 +974,140 @@ footer .logo{justify-content:center;margin-bottom:0.8rem}
 
 <!-- ============ CONTENT (Articles + KPI) ============ -->
 <section id="content" class="container reveal">
-  <div class="tab-panel active" id="tab-articles">
-  <div class="articles-intro">
-    <p>Авторские SEO-статьи и сторителлинг-материалы для блога МЦО Юнион. Каждая статья оптимизирована под поисковые запросы туристической ниши и совмещает информационную ценность с продающей структурой. Открываются в Google Docs.</p>
+<div class="tab-panel active" id="tab-articles">
+
+  <div class="articles-showcase">
+    <div class="showcase-badge">
+      <span class="showcase-dot"></span>
+      SEO + сторителлинг · Блог МЦО Юнион
+    </div>
+
+    <h3 class="showcase-title">SEO-оптимизированные статьи для туристической ниши</h3>
+
+    <p class="showcase-desc">
+      Авторские материалы для блога туроператора: курорты России и Абхазии, лечебный и горнолыжный туризм, PR-публикации для B2B. Каждая статья оптимизирована под поисковые запросы и совмещает информационную ценность со сторителлингом и продающей структурой.
+    </p>
+
+    <ul class="showcase-features">
+      <li><span class="feature-check">✓</span> Структура под информационные и коммерческие запросы</li>
+      <li><span class="feature-check">✓</span> LSI-семантика, заголовки H2–H3, мета-теги</li>
+      <li><span class="feature-check">✓</span> Сторителлинг, удержание внимания, CTA</li>
+      <li><span class="feature-check">✓</span> Работа с поисковыми системами Яндекс и Google</li>
+    </ul>
+
+    <div class="showcase-stats">
+      <div class="stat-item">
+        <div class="stat-num">13</div>
+        <div class="stat-label">опубликованных статей</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">5</div>
+        <div class="stat-label">тематических направлений</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">10K+</div>
+        <div class="stat-label">органический трафик / мес</div>
+      </div>
+    </div>
+
+    <button type="button" class="showcase-btn" id="openArticlesModal">
+      <span>Смотреть все статьи</span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </button>
   </div>
 
-  <div class="articles-list">
-
-    <a href="https://docs.google.com/document/d/1ZH57qKA-xjvlJqiNM34IqP0qPtcFbvpBYgsJ55ANur0/edit?usp=sharing" target="_blank" rel="noopener" class="article-link">
-      <div class="article-link-content">
-        <div class="article-link-category">Абхазия · Курорты</div>
-        <h3>Гагра</h3>
-        <p>SEO-статья о курорте Гагра: достопримечательности, инфраструктура, советы туристам.</p>
-      </div>
-      <span class="article-link-arrow">→</span>
-    </a>
-
-    <a href="https://docs.google.com/document/d/1txe2ZhJLPRFVAdU4XrHVTMWD6drNgupUVFXiZiS2DSQ/edit?usp=sharing" target="_blank" rel="noopener" class="article-link">
-      <div class="article-link-content">
-        <div class="article-link-category">Абхазия · Курорты</div>
-        <h3>Новый Афон</h3>
-        <p>Сторителлинг о монастыре, пещере и атмосфере курорта. Структура под информационные запросы.</p>
-      </div>
-      <span class="article-link-arrow">→</span>
-    </a>
-
-    <a href="https://docs.google.com/document/d/1jVkqQxY7-VtXwo64EUqymhnG3LfGk4qEaBjCch23XLk/edit?usp=sharing" target="_blank" rel="noopener" class="article-link">
-      <div class="article-link-content">
-        <div class="article-link-category">Абхазия · Курорты</div>
-        <h3>Старый Сухум</h3>
-        <p>SEO-материал об историческом центре столицы Абхазии: маршруты, история, рекомендации.</p>
-      </div>
-      <span class="article-link-arrow">→</span>
-    </a>
-
-    <a href="https://docs.google.com/document/d/180UIbZEPughhlP_TfQ0aalZ6ZbQ4wCvSlQRiO6vFG_w/edit?usp=sharing" target="_blank" rel="noopener" class="article-link">
-      <div class="article-link-content">
-        <div class="article-link-category">Абхазия · Обзор</div>
-        <h3>Абхазия — полный гид</h3>
-        <p>Большой обзорный материал по стране: курорты, маршруты, сезонность, целевые сегменты туристов.</p>
-      </div>
-      <span class="article-link-arrow">→</span>
-    </a>
-
-    <a href="https://docs.google.com/document/d/1T34if2XjiVGjCB0fIaizuarMTmIowFcHXwnfsm_BZBQ/edit?usp=sharing" target="_blank" rel="noopener" class="article-link">
-      <div class="article-link-content">
-        <div class="article-link-category">КМВ · Лечебный туризм</div>
-        <h3>Ессентуки</h3>
-        <p>SEO-статья о санаторно-курортном направлении: минеральные воды, лечение, выбор санатория.</p>
-      </div>
-      <span class="article-link-arrow">→</span>
-    </a>
-
-    <a href="https://docs.google.com/document/d/1qqAdMyQDpLcYS0_LzsChWHFTy8gyB5qv-SYvygXxvrs/edit?usp=sharing" target="_blank" rel="noopener" class="article-link">
-      <div class="article-link-content">
-        <div class="article-link-category">КМВ · Лечебный туризм</div>
-        <h3>Кисловодск</h3>
-        <p>Курорт нарзана и климатотерапии. Структура статьи под информационно-коммерческие запросы.</p>
-      </div>
-      <span class="article-link-arrow">→</span>
-    </a>
-
-    <a href="https://docs.google.com/document/d/1KVQ7G-YG2V7LW2blOU6laDdjnCGmh5kSOuPHxItG9VM/edit?usp=sharing" target="_blank" rel="noopener" class="article-link">
-      <div class="article-link-content">
-        <div class="article-link-category">Крым · Обзор</div>
-        <h3>Крым — полный гид</h3>
-        <p>Обзорный материал по полуострову: регионы, типы отдыха, сезонность, инфраструктура.</p>
-      </div>
-      <span class="article-link-arrow">→</span>
-    </a>
-
-    <a href="https://docs.google.com/document/d/1kYSlERBhRK01jmtBf5es6ODQMi_6Q3gmbw92CqruINo/edit?usp=sharing" target="_blank" rel="noopener" class="article-link">
-      <div class="article-link-content">
-        <div class="article-link-category">Крым · Курорты</div>
-        <h3>Судак</h3>
-        <p>SEO-материал о курорте: пляжи, Генуэзская крепость, советы туристам.</p>
-      </div>
-      <span class="article-link-arrow">→</span>
-    </a>
-
-    <a href="https://docs.google.com/document/d/1FXWHqT--TQKaXbiKR1U5hyqrQtFh_L3Em7AmeMA06gU/edit?usp=sharing" target="_blank" rel="noopener" class="article-link">
-      <div class="article-link-content">
-        <div class="article-link-category">Крым · Курорты</div>
-        <h3>Ялта</h3>
-        <p>Жемчужина южного берега Крыма. Сторителлинг + SEO-структура.</p>
-      </div>
-      <span class="article-link-arrow">→</span>
-    </a>
-
-    <a href="https://docs.google.com/document/d/1VXqcdFCOdmsWYDbZij4gSqxx0cK8zbAG_jDeQSDa67E/edit?usp=sharing" target="_blank" rel="noopener" class="article-link">
-      <div class="article-link-content">
-        <div class="article-link-category">Крым · Курорты</div>
-        <h3>Севастополь</h3>
-        <p>Город-герой и военно-историческое направление туризма. Структура под коммерческие запросы.</p>
-      </div>
-      <span class="article-link-arrow">→</span>
-    </a>
-
-    <a href="https://docs.google.com/document/d/1iIkGEn9LZOOrayrMHqR34oQOOBKNx8cShuW_MCBvan4/edit?usp=sharing" target="_blank" rel="noopener" class="article-link">
-      <div class="article-link-content">
-        <div class="article-link-category">Горнолыжный туризм</div>
-        <h3>Курорт «Газпром» (Красная Поляна)</h3>
-        <p>SEO-статья о горнолыжном курорте: трассы, инфраструктура, выбор сезона.</p>
-      </div>
-      <span class="article-link-arrow">→</span>
-    </a>
-
-    <a href="https://docs.google.com/document/d/15C_Too4lmcqEMQhYIrmR6Dl31QGCNlD6chwY4Qv_OGw/edit?usp=sharing" target="_blank" rel="noopener" class="article-link">
-      <div class="article-link-content">
-        <div class="article-link-category">Горнолыжный туризм</div>
-        <h3>Домбай</h3>
-        <p>Горнолыжный курорт Карачаево-Черкесии. Структура под информационные и коммерческие запросы.</p>
-      </div>
-      <span class="article-link-arrow">→</span>
-    </a>
-
-    <a href="https://docs.google.com/document/d/13sDPCPiUwhy9utAbCCDPld0MKDqp4AIPedguO1GKD4Q/edit?usp=sharing" target="_blank" rel="noopener" class="article-link">
-      <div class="article-link-content">
-        <div class="article-link-category">PR · B2B-промышленность</div>
-        <h3>Саранский телевизионный завод — площадка для ARM-серверов ТКМ</h3>
-        <p>PR-материал о промышленной кооперации. Работа на B2B-аудиторию и отраслевую прессу.</p>
-      </div>
-      <span class="article-link-arrow">→</span>
-    </a>
-
-  </div>
 </div>
+
+<!-- ============ МОДАЛЬНОЕ ОКНО СО СТАТЬЯМИ ============ -->
+<div class="modal-overlay" id="articlesModal" aria-hidden="true">
+  <div class="modal-window" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-header">
+      <div>
+        <div class="modal-eyebrow">Портфолио статей</div>
+        <h3 id="modalTitle">13 SEO-материалов для блога МЦО Юнион</h3>
+      </div>
+      <button type="button" class="modal-close" id="closeArticlesModal" aria-label="Закрыть">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <div class="modal-body">
+
+      <div class="modal-group">
+        <div class="modal-group-title">Абхазия</div>
+        <a href="https://docs.google.com/document/d/1ZH57qKA-xjvlJqiNM34IqP0qPtcFbvpBYgsJ55ANur0/edit?usp=sharing" target="_blank" rel="noopener" class="modal-link">
+          <span class="modal-link-title">Гагра</span>
+          <span class="modal-link-arrow">↗</span>
+        </a>
+        <a href="https://docs.google.com/document/d/1txe2ZhJLPRFVAdU4XrHVTMWD6drNgupUVFXiZiS2DSQ/edit?usp=sharing" target="_blank" rel="noopener" class="modal-link">
+          <span class="modal-link-title">Новый Афон</span>
+          <span class="modal-link-arrow">↗</span>
+        </a>
+        <a href="https://docs.google.com/document/d/1jVkqQxY7-VtXwo64EUqymhnG3LfGk4qEaBjCch23XLk/edit?usp=sharing" target="_blank" rel="noopener" class="modal-link">
+          <span class="modal-link-title">Старый Сухум</span>
+          <span class="modal-link-arrow">↗</span>
+        </a>
+        <a href="https://docs.google.com/document/d/180UIbZEPughhlP_TfQ0aalZ6ZbQ4wCvSlQRiO6vFG_w/edit?usp=sharing" target="_blank" rel="noopener" class="modal-link">
+          <span class="modal-link-title">Абхазия — полный гид</span>
+          <span class="modal-link-arrow">↗</span>
+        </a>
+      </div>
+
+      <div class="modal-group">
+        <div class="modal-group-title">Кавказские Минеральные Воды</div>
+        <a href="https://docs.google.com/document/d/1T34if2XjiVGjCB0fIaizuarMTmIowFcHXwnfsm_BZBQ/edit?usp=sharing" target="_blank" rel="noopener" class="modal-link">
+          <span class="modal-link-title">Ессентуки</span>
+          <span class="modal-link-arrow">↗</span>
+        </a>
+        <a href="https://docs.google.com/document/d/1qqAdMyQDpLcYS0_LzsChWHFTy8gyB5qv-SYvygXxvrs/edit?usp=sharing" target="_blank" rel="noopener" class="modal-link">
+          <span class="modal-link-title">Кисловодск</span>
+          <span class="modal-link-arrow">↗</span>
+        </a>
+      </div>
+
+      <div class="modal-group">
+        <div class="modal-group-title">Крым</div>
+        <a href="https://docs.google.com/document/d/1KVQ7G-YG2V7LW2blOU6laDdjnCGmh5kSOuPHxItG9VM/edit?usp=sharing" target="_blank" rel="noopener" class="modal-link">
+          <span class="modal-link-title">Крым — полный гид</span>
+          <span class="modal-link-arrow">↗</span>
+        </a>
+        <a href="https://docs.google.com/document/d/1kYSlERBhRK01jmtBf5es6ODQMi_6Q3gmbw92CqruINo/edit?usp=sharing" target="_blank" rel="noopener" class="modal-link">
+          <span class="modal-link-title">Судак</span>
+          <span class="modal-link-arrow">↗</span>
+        </a>
+        <a href="https://docs.google.com/document/d/1FXWHqT--TQKaXbiKR1U5hyqrQtFh_L3Em7AmeMA06gU/edit?usp=sharing" target="_blank" rel="noopener" class="modal-link">
+          <span class="modal-link-title">Ялта</span>
+          <span class="modal-link-arrow">↗</span>
+        </a>
+        <a href="https://docs.google.com/document/d/1VXqcdFCOdmsWYDbZij4gSqxx0cK8zbAG_jDeQSDa67E/edit?usp=sharing" target="_blank" rel="noopener" class="modal-link">
+          <span class="modal-link-title">Севастополь</span>
+          <span class="modal-link-arrow">↗</span>
+        </a>
+      </div>
+
+      <div class="modal-group">
+        <div class="modal-group-title">Горнолыжные курорты</div>
+        <a href="https://docs.google.com/document/d/1iIkGEn9LZOOrayrMHqR34oQOOBKNx8cShuW_MCBvan4/edit?usp=sharing" target="_blank" rel="noopener" class="modal-link">
+          <span class="modal-link-title">Курорт «Газпром» (Красная Поляна)</span>
+          <span class="modal-link-arrow">↗</span>
+        </a>
+        <a href="https://docs.google.com/document/d/15C_Too4lmcqEMQhYIrmR6Dl31QGCNlD6chwY4Qv_OGw/edit?usp=sharing" target="_blank" rel="noopener" class="modal-link">
+          <span class="modal-link-title">Домбай</span>
+          <span class="modal-link-arrow">↗</span>
+        </a>
+      </div>
+
+      <div class="modal-group">
+        <div class="modal-group-title">PR · B2B-промышленность</div>
+        <a href="https://docs.google.com/document/d/13sDPCPiUwhy9utAbCCDPld0MKDqp4AIPedguO1GKD4Q/edit?usp=sharing" target="_blank" rel="noopener" class="modal-link">
+          <span class="modal-link-title">Саранский телевизионный завод — площадка для ARM-серверов ТКМ</span>
+          <span class="modal-link-arrow">↗</span>
+        </a>
+      </div>
+    </div>
+   </div>
 
   <div class="tab-panel" id="tab-kpi">
     <div class="kpi-block">
@@ -1061,49 +1392,76 @@ footer .logo{justify-content:center;margin-bottom:0.8rem}
   </div>
 
   <div class="contacts-grid">
-    <a href="mailto:hello@example.com" class="contact-card">
-      <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></div>
-      <div>
-        <div class="contact-label">Email</div>
-        <div class="contact-value">укажите email</div>
-      </div>
-    </a>
 
-    <a href="tel:+70000000000" class="contact-card">
-      <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-      <div>
-        <div class="contact-label">Телефон</div>
-        <div class="contact-value">укажите телефон</div>
-      </div>
-    </a>
+  <a href="mailto:hello@example.com" class="contact-card">
+    <div class="contact-icon contact-icon--mail">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="5" width="18" height="14" rx="2"/>
+        <path d="M3 7l9 6 9-6"/>
+      </svg>
+    </div>
+    <div>
+      <div class="contact-label">Email</div>
+      <div class="contact-value">укажите email</div>
+    </div>
+  </a>
 
-    <a href="https://t.me/username" class="contact-card" target="_blank" rel="noopener">
-      <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></div>
-      <div>
-        <div class="contact-label">Telegram</div>
-        <div class="contact-value">@username</div>
-      </div>
-    </a>
+  <a href="tel:+70000000000" class="contact-card">
+    <div class="contact-icon contact-icon--phone">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/>
+      </svg>
+    </div>
+    <div>
+      <div class="contact-label">Телефон</div>
+      <div class="contact-value">укажите телефон</div>
+    </div>
+  </a>
 
-    <a href="#" class="contact-card">
-      <div class="contact-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 0-8 8c0 6 8 12 8 12s8-6 8-12a8 8 0 0 0-8-8z"/></svg></div>
-      <div>
-        <div class="contact-label">Локация</div>
-        <div class="contact-value">Россия · удалённо / релокация</div>
-      </div>
-    </a>
-  </div>
+  <a href="https://t.me/username" class="contact-card" target="_blank" rel="noopener">
+    <div class="contact-icon contact-icon--telegram">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/>
+      </svg>
+    </div>
+    <div>
+      <div class="contact-label">Telegram</div>
+      <div class="contact-value">@username</div>
+    </div>
+  </a>
+
+  <a href="#" class="contact-card">
+    <div class="contact-icon contact-icon--location">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+        <circle cx="12" cy="10" r="3"/>
+      </svg>
+    </div>
+    <div>
+      <div class="contact-label">Локация</div>
+      <div class="contact-value">Россия · удалённо / релокация</div>
+    </div>
+  </a>
+
+</div>
 
   <div class="contact-cta">
-    <a href="resume.pdf" download class="btn btn-primary">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-      Скачать резюме (PDF)
-    </a>
-    <a href="mailto:hello@example.com" class="btn btn-secondary">
-      Написать письмо
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
-  </div>
+  <a href="resume.pdf" download class="btn btn-primary">
+    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+      <polyline points="7 10 12 15 17 10"/>
+      <line x1="12" y1="15" x2="12" y2="3"/>
+    </svg>
+    Скачать резюме (PDF)
+  </a>
+  <a href="mailto:hello@example.com" class="btn btn-secondary">
+    Написать письмо
+    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="5" y1="12" x2="19" y2="12"/>
+      <polyline points="12 5 19 12 12 19"/>
+    </svg>
+  </a>
+</div>
 </section>
 
 <!-- ============ FOOTER ============ -->
@@ -1125,7 +1483,7 @@ const themeToggle = document.getElementById('themeToggle');
 const themeIcon = document.getElementById('themeIcon');
 const html = document.documentElement;
 
-const sunIcon = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>';
+const sunIcon = '<circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/>';
 const moonIcon = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
 
 function setTheme(theme){
@@ -1181,6 +1539,36 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       window.scrollTo({ top, behavior: 'smooth' });
     }
   });
+});
+  // ========= Articles modal =========
+const articlesModal = document.getElementById('articlesModal');
+const openModalBtn = document.getElementById('openArticlesModal');
+const closeModalBtn = document.getElementById('closeArticlesModal');
+
+function openModal(){
+  articlesModal.classList.add('active');
+  articlesModal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(){
+  articlesModal.classList.remove('active');
+  articlesModal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+if(openModalBtn) openModalBtn.addEventListener('click', openModal);
+if(closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+
+if(articlesModal){
+  articlesModal.addEventListener('click', (e) => {
+    if(e.target === articlesModal) closeModal();
+  });
+}
+
+document.addEventListener('keydown', (e) => {
+  if(e.key === 'Escape' && articlesModal && articlesModal.classList.contains('active')){
+    closeModal();
+  }
 });
 </script>
 
