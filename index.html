@@ -1,731 +1,977 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Александра Мелентиева — Маркетолог, Маркетолог оркестр, Маркетолог полного цикла</title>
+<title>Александра Мелентьева · Marketing Portfolio</title>
+<meta name="description" content="Маркетолог полного цикла. 16+ лет опыта в маркетинге, рекламе, PR и digital. Туризм, FMCG, промышленность, девелопмент, HoReCa, недвижимость.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
 <style>
-  :root {
-    --grad-start: #14b8a6;
-    --grad-end: #8b5cf6;
-    --bg: #0f172a;
-    --bg-card: #1e293b;
-    --bg-soft: #f8fafc;
-    --text: #0f172a;
-    --text-light: #64748b;
-    --text-white: #f8fafc;
-    --border: #e2e8f0;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    color: var(--text);
-    line-height: 1.6;
-    background: var(--bg-soft);
-  }
-  .gradient-text {
-    background: linear-gradient(135deg, var(--grad-start), var(--grad-end));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .gradient-bg {
-    background: linear-gradient(135deg, var(--grad-start), var(--grad-end));
-  }
-  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
-  section { padding: 80px 0; }
-  h2 { font-size: 2.2rem; margin-bottom: 16px; font-weight: 800; }
-  h3 { font-size: 1.3rem; margin-bottom: 12px; font-weight: 700; }
-  .section-subtitle { color: var(--text-light); font-size: 1.05rem; margin-bottom: 48px; max-width: 700px; }
+/* ============ RESET & VARIABLES ============ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
 
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(255,255,255,0.95);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    padding: 16px 0;
-  }
-  .nav-inner { display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto; padding: 0 24px; }
-  .nav-logo { font-weight: 800; font-size: 1.1rem; }
-  .nav-links { display: flex; gap: 28px; }
-  .nav-links a { color: var(--text); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--grad-end); }
-  @media (max-width: 768px) { .nav-links { display: none; } }
+:root{
+  --indigo:#4F46E5;
+  --indigo-soft:#6366F1;
+  --magenta:#E11D74;
+  --cyan:#06B6D4;
+  --bg:#0B0B14;
+  --bg-2:#13132A;
+  --surface:rgba(255,255,255,0.04);
+  --surface-2:rgba(255,255,255,0.07);
+  --border:rgba(255,255,255,0.08);
+  --border-hover:rgba(99,102,241,0.5);
+  --text:#F5F5F7;
+  --text-2:#A1A1B5;
+  --text-3:#6B6B80;
+  --gradient-hero:radial-gradient(ellipse at 20% 0%,rgba(79,70,229,0.25),transparent 50%),radial-gradient(ellipse at 80% 50%,rgba(225,29,116,0.15),transparent 50%),radial-gradient(ellipse at 50% 100%,rgba(6,182,212,0.15),transparent 50%);
+}
 
-  /* HERO */
-  .hero {
-    min-height: 100vh; display: flex; align-items: center;
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-    color: var(--text-white);
-    position: relative; overflow: hidden;
-    padding-top: 80px;
-  }
-  .hero::before {
-    content: ''; position: absolute; top: -50%; right: -20%;
-    width: 700px; height: 700px;
-    background: radial-gradient(circle, rgba(20,184,166,0.15), transparent 70%);
-    border-radius: 50%;
-  }
-  .hero::after {
-    content: ''; position: absolute; bottom: -30%; left: -10%;
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(139,92,246,0.15), transparent 70%);
-    border-radius: 50%;
-  }
-  .hero-grid { display: grid; grid-template-columns: 1fr auto; gap: 60px; align-items: center; position: relative; z-index: 1; }
-  @media (max-width: 768px) { .hero-grid { grid-template-columns: 1fr; text-align: center; } }
-  .hero h1 { font-size: 3.2rem; line-height: 1.1; margin-bottom: 20px; font-weight: 800; }
-  .hero .role { font-size: 1.3rem; color: #94a3b8; margin-bottom: 24px; }
-  .hero .desc { font-size: 1.05rem; color: #cbd5e1; max-width: 560px; margin-bottom: 36px; }
-  .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
-  @media (max-width: 768px) { .hero-cta { justify-content: center; } }
-  .btn {
-    display: inline-block; padding: 14px 28px; border-radius: 10px;
-    font-weight: 600; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
-    border: none; cursor: pointer; font-size: 1rem;
-  }
-  .btn-primary {
-    background: linear-gradient(135deg, var(--grad-start), var(--grad-end));
-    color: white;
-    box-shadow: 0 8px 24px rgba(139,92,246,0.35);
-  }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(139,92,246,0.5); }
-  .btn-secondary {
-    background: transparent; color: white; border: 1.5px solid rgba(255,255,255,0.3);
-  }
-  .btn-secondary:hover { background: rgba(255,255,255,0.1); }
+[data-theme="light"]{
+  --bg:#F7F7FB;
+  --bg-2:#EDEDF5;
+  --surface:rgba(0,0,0,0.03);
+  --surface-2:rgba(0,0,0,0.06);
+  --border:rgba(0,0,0,0.08);
+  --border-hover:rgba(79,70,229,0.4);
+  --text:#0B0B14;
+  --text-2:#4A4A5E;
+  --text-3:#8585A0;
+  --gradient-hero:radial-gradient(ellipse at 20% 0%,rgba(79,70,229,0.15),transparent 50%),radial-gradient(ellipse at 80% 50%,rgba(225,29,116,0.08),transparent 50%),radial-gradient(ellipse at 50% 100%,rgba(6,182,212,0.08),transparent 50%);
+}
 
-  .avatar {
-    width: 220px; height: 220px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--grad-start), var(--grad-end));
-    display: flex; align-items: center; justify-content: center;
-    font-size: 4.5rem; font-weight: 800; color: white;
-    box-shadow: 0 20px 60px rgba(20,184,166,0.4);
-    border: 4px solid rgba(255,255,255,0.1);
-  }
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+  overflow-x:hidden;
+  transition:background 0.4s ease,color 0.4s ease;
+}
 
-  /* ABOUT */
-  .about { background: white; }
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
-  @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; gap: 32px; } }
-  .about p { color: var(--text-light); margin-bottom: 16px; font-size: 1.05rem; }
-  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-  .stat-card {
-    background: var(--bg-soft); padding: 24px; border-radius: 14px;
-    border-left: 4px solid var(--grad-end);
-  }
-  .stat-num { font-size: 2.2rem; font-weight: 800; margin-bottom: 4px; }
-  .stat-label { color: var(--text-light); font-size: 0.9rem; }
+/* Animated background mesh */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background:var(--gradient-hero);
+  z-index:-1;
+  pointer-events:none;
+}
 
-  /* COMPETENCIES */
-  .skills { background: var(--bg-soft); }
-  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
-  .skill-card {
-    background: white; padding: 28px; border-radius: 14px;
-    border: 1px solid var(--border);
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .skill-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
-  .skill-icon { font-size: 2.2rem; margin-bottom: 12px; }
-  .skill-card h3 { font-size: 1.1rem; margin-bottom: 8px; }
-  .skill-card p { color: var(--text-light); font-size: 0.95rem; }
+/* ============ TYPOGRAPHY ============ */
+h1,h2,h3,h4{font-family:'Manrope',sans-serif;font-weight:700;line-height:1.15;letter-spacing:-0.02em}
+h1{font-size:clamp(2.2rem,5.5vw,4.5rem);font-weight:800}
+h2{font-size:clamp(1.8rem,3.5vw,2.8rem);margin-bottom:0.5rem}
+h3{font-size:clamp(1.2rem,2vw,1.5rem)}
+.num{font-family:'Space Grotesk',monospace;font-weight:700;font-variant-numeric:tabular-nums}
 
-  /* EXPERIENCE TIMELINE */
-  .experience { background: white; }
-  .timeline { position: relative; padding-left: 32px; }
-  .timeline::before {
-    content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px;
-    background: linear-gradient(to bottom, var(--grad-start), var(--grad-end));
-  }
-  .timeline-item { position: relative; padding-bottom: 40px; }
-  .timeline-item::before {
-    content: ''; position: absolute; left: -32px; top: 4px;
-    width: 18px; height: 18px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--grad-start), var(--grad-end));
-    border: 3px solid white; box-shadow: 0 0 0 2px var(--grad-end);
-  }
-  .timeline-date { font-size: 0.9rem; color: var(--grad-end); font-weight: 700; margin-bottom: 6px; }
-  .timeline-role { font-size: 1.2rem; font-weight: 700; margin-bottom: 4px; }
-  .timeline-company { color: var(--text-light); margin-bottom: 12px; font-weight: 500; }
-  .timeline-desc { color: var(--text-light); }
-  .timeline-desc li { margin-bottom: 6px; margin-left: 20px; }
+/* ============ LAYOUT ============ */
+.container{max-width:1200px;margin:0 auto;padding:0 1.5rem}
+section{padding:6rem 0;position:relative}
+.section-head{margin-bottom:3rem}
+.section-tag{display:inline-block;padding:0.3rem 0.8rem;background:var(--surface);border:1px solid var(--border);border-radius:100px;font-size:0.8rem;color:var(--cyan);margin-bottom:1rem;font-weight:500;letter-spacing:0.05em;text-transform:uppercase}
+.section-sub{color:var(--text-2);max-width:640px;font-size:1.05rem}
 
-  /* CASES */
-  .cases { background: var(--bg-soft); }
-  .cases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
-  .case-card {
-    background: white; border-radius: 16px; padding: 32px;
-    border: 1px solid var(--border);
-    transition: transform 0.2s, box-shadow 0.2s;
-    display: flex; flex-direction: column;
-  }
-  .case-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.08); }
-  .case-emoji { font-size: 2.4rem; margin-bottom: 16px; }
-  .case-card h3 { font-size: 1.25rem; margin-bottom: 12px; }
-  .case-card p { color: var(--text-light); margin-bottom: 20px; font-size: 0.97rem; flex-grow: 1; }
-  .case-metrics { display: flex; flex-direction: column; gap: 10px; padding-top: 20px; border-top: 1px solid var(--border); }
-  .metric { display: flex; justify-content: space-between; align-items: center; }
-  .metric-label { color: var(--text-light); font-size: 0.9rem; }
-  .metric-value { font-weight: 700; color: var(--grad-end); }
+/* ============ NAV ============ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:1rem 1.5rem;
+  background:rgba(11,11,20,0.6);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  transition:background 0.3s;
+}
+[data-theme="light"] nav{background:rgba(247,247,251,0.7)}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.logo{font-family:'Manrope',sans-serif;font-weight:800;font-size:1.1rem;display:flex;align-items:center;gap:0.6rem}
+.logo-mark{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--indigo),var(--magenta));display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.85rem;font-weight:800}
+.nav-links{display:flex;gap:1.8rem;list-style:none}
+.nav-links a{color:var(--text-2);text-decoration:none;font-size:0.92rem;font-weight:500;transition:color 0.2s}
+.nav-links a:hover{color:var(--text)}
+.theme-toggle{background:var(--surface);border:1px solid var(--border);width:38px;height:38px;border-radius:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text);transition:all 0.2s}
+.theme-toggle:hover{border-color:var(--border-hover);transform:translateY(-1px)}
+@media(max-width:768px){.nav-links{display:none}}
 
-  /* SEO MATERIALS */
-  .seo { background: white; }
-  .seo-intro {
-    background: linear-gradient(135deg, rgba(20,184,166,0.08), rgba(139,92,246,0.08));
-    padding: 24px; border-radius: 14px; margin-bottom: 36px;
-    border-left: 4px solid var(--grad-end);
-  }
-  .seo-intro strong { color: var(--grad-end); font-size: 1.1rem; }
-  .seo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
-  .seo-card {
-    background: var(--bg-soft); padding: 20px; border-radius: 12px;
-    border: 1px solid var(--border); text-decoration: none; color: var(--text);
-    transition: all 0.2s; display: flex; flex-direction: column; gap: 8px;
-  }
-  .seo-card:hover {
-    transform: translateY(-3px); border-color: var(--grad-end);
-    box-shadow: 0 8px 24px rgba(139,92,246,0.15);
-  }
-  .seo-tag {
-    display: inline-block; font-size: 0.75rem; font-weight: 700;
-    color: var(--grad-end); text-transform: uppercase; letter-spacing: 0.5px;
-  }
-  .seo-card h4 { font-size: 1rem; font-weight: 600; line-height: 1.4; }
-  .seo-link { font-size: 0.85rem; color: var(--grad-end); margin-top: auto; font-weight: 600; }
+/* ============ HERO ============ */
+.hero{min-height:100vh;display:flex;align-items:center;padding-top:6rem;position:relative;overflow:hidden}
+.hero-inner{display:grid;grid-template-columns:1.3fr 1fr;gap:4rem;align-items:center}
+@media(max-width:900px){.hero-inner{grid-template-columns:1fr;gap:3rem}}
+.hero-badge{display:inline-flex;align-items:center;gap:0.5rem;padding:0.5rem 1rem;background:var(--surface);border:1px solid var(--border);border-radius:100px;font-size:0.85rem;color:var(--text-2);margin-bottom:1.5rem}
+.hero-badge::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.hero h1 span{background:linear-gradient(135deg,var(--indigo-soft),var(--magenta),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-sub{font-size:clamp(1rem,1.3vw,1.2rem);color:var(--text-2);margin:1.5rem 0;max-width:540px}
+.hero-formats{display:flex;flex-wrap:wrap;gap:0.6rem;margin-bottom:2rem}
+.format-chip{padding:0.4rem 0.9rem;background:var(--surface);border:1px solid var(--border);border-radius:100px;font-size:0.85rem;color:var(--text-2)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:1rem}
+.btn{display:inline-flex;align-items:center;gap:0.6rem;padding:0.9rem 1.8rem;border-radius:12px;font-weight:600;font-size:0.95rem;text-decoration:none;cursor:pointer;transition:all 0.25s;border:1px solid transparent;font-family:inherit}
+.btn-primary{background:linear-gradient(135deg,var(--indigo),var(--magenta));color:#fff;box-shadow:0 8px 24px rgba(79,70,229,0.35)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(225,29,116,0.4)}
+.btn-secondary{background:var(--surface);color:var(--text);border-color:var(--border)}
+.btn-secondary:hover{border-color:var(--border-hover);transform:translateY(-2px)}
 
-  /* EDUCATION */
-  .education { background: var(--bg-soft); }
-  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-  @media (max-width: 768px) { .edu-grid { grid-template-columns: 1fr; } }
-  .edu-card { background: white; padding: 28px; border-radius: 14px; border: 1px solid var(--border); }
-  .edu-card h3 { font-size: 1.1rem; }
-  .edu-card .edu-org { color: var(--text-light); margin-bottom: 6px; }
-  .edu-card .edu-year { font-size: 0.9rem; color: var(--grad-end); font-weight: 600; }
+/* Hero visual */
+.hero-visual{position:relative;aspect-ratio:1;max-width:480px;margin-left:auto}
+.orbit{position:absolute;inset:0;border:1px solid var(--border);border-radius:50%;animation:rotate 30s linear infinite}
+.orbit:nth-child(2){inset:12%;animation-duration:22s;animation-direction:reverse;border-color:rgba(79,70,229,0.2)}
+.orbit:nth-child(3){inset:24%;animation-duration:16s;border-color:rgba(225,29,116,0.15)}
+@keyframes rotate{to{transform:rotate(360deg)}}
+.orbit-dot{position:absolute;width:14px;height:14px;border-radius:50%;background:var(--cyan);box-shadow:0 0 24px var(--cyan)}
+.orbit:nth-child(1) .orbit-dot{top:-7px;left:50%;transform:translateX(-50%)}
+.orbit:nth-child(2) .orbit-dot{background:var(--magenta);box-shadow:0 0 24px var(--magenta);top:50%;right:-7px;transform:translateY(-50%)}
+.orbit:nth-child(3) .orbit-dot{background:var(--indigo-soft);box-shadow:0 0 24px var(--indigo-soft);bottom:-7px;left:30%}
+.hero-core{position:absolute;inset:36%;border-radius:50%;background:linear-gradient(135deg,var(--indigo),var(--magenta));display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Manrope';font-weight:800;font-size:clamp(1.2rem,2.5vw,1.8rem);box-shadow:0 0 60px rgba(79,70,229,0.5)}
+@media(max-width:900px){.hero-visual{max-width:340px;margin:0 auto}}
 
-  /* CONTACTS */
-  .contacts {
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-    color: var(--text-white); text-align: center;
-  }
-  .contacts h2 { color: white; }
-  .contacts .section-subtitle { color: #94a3b8; margin-left: auto; margin-right: auto; }
-  .contact-list { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-top: 20px; }
-  .contact-item {
-    background: rgba(255,255,255,0.05); padding: 20px 28px; border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.1); text-decoration: none; color: white;
-    transition: all 0.2s; display: flex; align-items: center; gap: 12px;
-  }
-  .contact-item:hover { background: rgba(255,255,255,0.1); border-color: var(--grad-end); transform: translateY(-2px); }
-  .contact-icon { font-size: 1.4rem; }
+/* ============ ABOUT ============ */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+@media(max-width:800px){.about-grid{grid-template-columns:1fr}}
+.about-text p{color:var(--text-2);margin-bottom:1.1rem;font-size:1.02rem}
+.about-text p strong{color:var(--text);font-weight:600}
+.about-highlights{display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-content:start}
+.highlight{padding:1.5rem;background:var(--surface);border:1px solid var(--border);border-radius:16px;backdrop-filter:blur(20px)}
+.highlight-num{font-family:'Space Grotesk';font-size:2rem;font-weight:700;background:linear-gradient(135deg,var(--cyan),var(--indigo-soft));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:0.3rem}
+.highlight-label{color:var(--text-2);font-size:0.9rem;line-height:1.4}
 
-  footer { background: #0f172a; color: #64748b; text-align: center; padding: 32px 24px; font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.05); }
+/* ============ ACHIEVEMENTS ============ */
+.achievements{background:linear-gradient(180deg,transparent,rgba(79,70,229,0.04),transparent)}
+.ach-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-bottom:3rem}
+@media(max-width:900px){.ach-grid{grid-template-columns:repeat(2,1fr)}}
+.ach-card{padding:2rem 1.5rem;background:var(--surface);border:1px solid var(--border);border-radius:20px;backdrop-filter:blur(20px);position:relative;overflow:hidden;transition:all 0.3s}
+.ach-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent,rgba(99,102,241,0.06));opacity:0;transition:opacity 0.3s}
+.ach-card:hover{border-color:var(--border-hover);transform:translateY(-4px)}
+.ach-card:hover::before{opacity:1}
+.ach-num{font-family:'Space Grotesk';font-size:clamp(2rem,4vw,3rem);font-weight:700;line-height:1;margin-bottom:0.8rem;background:linear-gradient(135deg,var(--magenta),var(--indigo-soft));-webkit-background-clip:text;background-clip:text;color:transparent}
+.ach-label{color:var(--text-2);font-size:0.92rem;line-height:1.4}
+.ach-source{margin-top:0.8rem;font-size:0.78rem;color:var(--text-3);text-transform:uppercase;letter-spacing:0.08em}
+.ach-subgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+@media(max-width:800px){.ach-subgrid{grid-template-columns:1fr}}
+
+/* ============ NICHES ============ */
+.niches-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem}
+.niche-card{position:relative;padding:2rem;background:var(--surface);border:1px solid var(--border);border-radius:20px;backdrop-filter:blur(20px);overflow:hidden;transition:all 0.3s;cursor:pointer}
+.niche-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--indigo),var(--magenta),var(--cyan));opacity:0;transition:opacity 0.3s}
+.niche-card:hover{border-color:var(--border-hover);transform:translateY(-4px)}
+.niche-card:hover::before{opacity:1}
+.niche-icon{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,rgba(79,70,229,0.2),rgba(225,29,116,0.2));display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;border:1px solid var(--border)}
+.niche-icon svg{width:24px;height:24px;stroke:var(--cyan);fill:none;stroke-width:1.8}
+.niche-card h3{margin-bottom:0.4rem}
+.niche-company{font-size:0.85rem;color:var(--cyan);margin-bottom:1rem;font-weight:500}
+.niche-card p{color:var(--text-2);font-size:0.95rem;margin-bottom:1rem}
+.niche-list{list-style:none;display:flex;flex-direction:column;gap:0.5rem}
+.niche-list li{color:var(--text-2);font-size:0.9rem;padding-left:1.2rem;position:relative}
+.niche-list li::before{content:'';position:absolute;left:0;top:0.55rem;width:6px;height:6px;border-radius:50%;background:var(--magenta)}
+.niche-metrics{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid var(--border)}
+.metric-chip{padding:0.4rem 0.8rem;background:rgba(6,182,212,0.1);border:1px solid rgba(6,182,212,0.25);border-radius:8px;font-size:0.82rem;color:var(--cyan);font-family:'Space Grotesk';font-weight:500}
+
+/* ============ CONTENT (Articles + KPI) ============ */
+.content-tabs{display:flex;gap:0.5rem;margin-bottom:2rem;flex-wrap:wrap}
+.tab-btn{padding:0.6rem 1.2rem;background:var(--surface);border:1px solid var(--border);border-radius:100px;color:var(--text-2);cursor:pointer;font-family:inherit;font-size:0.9rem;font-weight:500;transition:all 0.2s}
+.tab-btn.active{background:linear-gradient(135deg,var(--indigo),var(--magenta));color:#fff;border-color:transparent}
+.tab-panel{display:none}
+.tab-panel.active{display:block;animation:fadeIn 0.4s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+.articles-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
+.article-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;overflow:hidden;transition:all 0.3s;backdrop-filter:blur(20px)}
+.article-card:hover{border-color:var(--border-hover);transform:translateY(-4px)}
+.article-cover{aspect-ratio:16/9;background:linear-gradient(135deg,var(--indigo),var(--magenta));position:relative;overflow:hidden}
+.article-cover.maldives{background:linear-gradient(135deg,#06B6D4,#4F46E5)}
+.article-cover.goa{background:linear-gradient(135deg,#E11D74,#F59E0B)}
+.article-cover.russia{background:linear-gradient(135deg,#4F46E5,#7C3AED,#06B6D4)}
+.article-cover::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,0.2),transparent 50%)}
+.article-cover-label{position:absolute;bottom:1rem;left:1rem;padding:0.3rem 0.7rem;background:rgba(0,0,0,0.35);backdrop-filter:blur(8px);border-radius:6px;color:#fff;font-size:0.78rem;font-weight:600;letter-spacing:0.05em;z-index:1}
+.article-body{padding:1.5rem}
+.article-tag{font-size:0.78rem;color:var(--cyan);text-transform:uppercase;letter-spacing:0.08em;font-weight:600;margin-bottom:0.6rem}
+.article-body h3{margin-bottom:0.6rem;font-size:1.15rem}
+.article-body p{color:var(--text-2);font-size:0.92rem;margin-bottom:1rem}
+.article-meta{display:flex;gap:1rem;font-size:0.82rem;color:var(--text-3);padding-top:1rem;border-top:1px solid var(--border)}
+
+.kpi-block{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:2rem;backdrop-filter:blur(20px)}
+.kpi-block h3{margin-bottom:0.5rem}
+.kpi-desc{color:var(--text-2);margin-bottom:2rem;font-size:0.95rem}
+.kpi-channels{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-bottom:2rem}
+.channel-card{padding:1.2rem;background:var(--surface-2);border:1px solid var(--border);border-radius:14px}
+.channel-name{font-size:0.82rem;color:var(--text-3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.5rem;font-weight:600}
+.channel-value{font-family:'Space Grotesk';font-size:1.6rem;font-weight:700;color:var(--text);line-height:1.1}
+.channel-trend{display:inline-flex;align-items:center;gap:0.3rem;margin-top:0.5rem;font-size:0.82rem;color:#10B981;font-weight:600}
+.channel-trend.down{color:#F59E0B}
+.kpi-note{padding:1rem 1.2rem;background:rgba(79,70,229,0.08);border:1px solid rgba(79,70,229,0.25);border-radius:12px;font-size:0.88rem;color:var(--text-2);line-height:1.6}
+.kpi-note strong{color:var(--text);display:block;margin-bottom:0.3rem}
+
+/* ============ TIMELINE ============ */
+.timeline{position:relative;padding-left:2rem}
+.timeline::before{content:'';position:absolute;left:0;top:0.5rem;bottom:0.5rem;width:2px;background:linear-gradient(180deg,var(--indigo),var(--magenta),var(--cyan))}
+.tl-item{position:relative;padding-bottom:2.5rem}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{content:'';position:absolute;left:-2.5rem;top:0.4rem;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid var(--indigo-soft);box-shadow:0 0 0 4px rgba(99,102,241,0.15)}
+.tl-date{font-family:'Space Grotesk';color:var(--cyan);font-size:0.88rem;font-weight:600;margin-bottom:0.3rem}
+.tl-item h3{margin-bottom:0.2rem;font-size:1.15rem}
+.tl-role{color:var(--text-2);font-size:0.92rem;margin-bottom:0.6rem;font-weight:500}
+.tl-item p{color:var(--text-2);font-size:0.92rem;line-height:1.6}
+
+/* ============ SKILLS ============ */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem}
+.skill-group{padding:1.6rem;background:var(--surface);border:1px solid var(--border);border-radius:16px;backdrop-filter:blur(20px);transition:all 0..skill-group{padding:1.6rem;background:var(--surface);border:1px solid var(--border);border-radius:16px;backdrop-filter:blur(20px);transition:all 0.3s}
+.skill-group:hover{border-color:var(--border-hover);transform:translateY(-2px)}
+.skill-group h4{font-size:1rem;margin-bottom:1rem;display:flex;align-items:center;gap:0.6rem;color:var(--text)}
+.skill-group h4::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--magenta);box-shadow:0 0 10px var(--magenta)}
+.skill-tags{display:flex;flex-wrap:wrap;gap:0.5rem}
+.skill-tag{padding:0.4rem 0.8rem;background:var(--surface-2);border:1px solid var(--border);border-radius:8px;font-size:0.85rem;color:var(--text-2);transition:all 0.2s}
+.skill-tag:hover{color:var(--cyan);border-color:rgba(6,182,212,0.4)}
+
+/* ============ EDUCATION ============ */
+.edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+.edu-card{padding:1.8rem;background:var(--surface);border:1px solid var(--border);border-radius:18px;backdrop-filter:blur(20px);transition:all 0.3s}
+.edu-card:hover{border-color:var(--border-hover);transform:translateY(-4px)}
+.edu-year{font-family:'Space Grotesk';color:var(--cyan);font-size:0.88rem;font-weight:600;margin-bottom:0.5rem}
+.edu-card h3{margin-bottom:0.4rem;font-size:1.1rem}
+.edu-card p{color:var(--text-2);font-size:0.9rem;line-height:1.5}
+.edu-degree{display:inline-block;margin-top:0.8rem;padding:0.3rem 0.7rem;background:rgba(225,29,116,0.1);border:1px solid rgba(225,29,116,0.3);border-radius:6px;font-size:0.78rem;color:var(--magenta);font-weight:500}
+
+/* ============ CONTACTS ============ */
+.contacts{padding-bottom:8rem}
+.contacts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-bottom:2.5rem}
+.contact-card{display:flex;align-items:center;gap:1rem;padding:1.3rem;background:var(--surface);border:1px solid var(--border);border-radius:16px;text-decoration:none;color:inherit;transition:all 0.3s;backdrop-filter:blur(20px)}
+.contact-card:hover{border-color:var(--border-hover);transform:translateY(-3px);background:var(--surface-2)}
+.contact-icon{width:42px;height:42px;border-radius:10px;background:linear-gradient(135deg,rgba(79,70,229,0.2),rgba(225,29,116,0.2));display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid var(--border)}
+.contact-icon svg{width:20px;height:20px;stroke:var(--cyan);fill:none;stroke-width:1.8}
+.contact-label{font-size:0.78rem;color:var(--text-3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.2rem;font-weight:600}
+.contact-value{color:var(--text);font-weight:500;font-size:0.95rem;word-break:break-word}
+.contact-cta{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center}
+
+/* ============ FOOTER ============ */
+footer{padding:2.5rem 0;border-top:1px solid var(--border);text-align:center;color:var(--text-3);font-size:0.88rem}
+footer .logo{justify-content:center;margin-bottom:0.8rem}
+
+/* ============ SCROLL REVEAL ============ */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ============ SCROLLBAR ============ */
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--indigo),var(--magenta));border-radius:10px}
+
+/* ============ SELECTION ============ */
+::selection{background:var(--magenta);color:#fff}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- ============ NAV ============ -->
 <nav>
   <div class="nav-inner">
-    <div class="nav-logo gradient-text">Александра Мартынова</div>
-    <div class="nav-links">
-      <a href="#about">Обо мне</a>
-      <a href="#skills">Компетенции</a>
-      <a href="#experience">Опыт</a>
-      <a href="#cases">Кейсы</a>
-      <a href="#seo">Публикации</a>
-      <a href="#contacts">Контакты</a>
-    </div>
+    <a href="#" class="logo">
+      <span class="logo-mark">АМ</span>
+      <span>Александра Мелентьева</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">Обо мне</a></li>
+      <li><a href="#niches">Ниши</a></li>
+      <li><a href="#content">Работы</a></li>
+      <li><a href="#experience">Опыт</a></li>
+      <li><a href="#skills">Навыки</a></li>
+      <li><a href="#contacts">Контакты</a></li>
+    </ul>
+    <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">
+      <svg id="themeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </button>
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
+<!-- ============ HERO ============ -->
+<section class="hero container">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">Открыта к предложениям</div>
+      <h1>Маркетолог<br><span>полного цикла</span></h1>
+      <p class="hero-sub">16+ лет опыта в маркетинге, рекламе, PR и digital. Стратегия, бренд, контент, аналитика, команды. От идеи до измеримого результата.</p>
+      <div class="hero-formats">
+        <span class="format-chip">Удалённо</span>
+        <span class="format-chip">Гибрид</span>
+        <span class="format-chip">Офис</span>
+        <span class="format-chip">Командировки</span>
+      </div>
+      <div class="hero-cta">
+        <a href="#contacts" class="btn btn-primary">
+          Связаться
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="resume.pdf" download class="btn btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Скачать резюме
+        </a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="orbit"><div class="orbit-dot"></div></div>
+      <div class="orbit"><div class="orbit-dot"></div></div>
+      <div class="orbit"><div class="orbit-dot"></div></div>
+      <div class="hero-core">16+<br>лет</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" class="container reveal">
+  <div class="section-head">
+    <div class="section-tag">Обо мне</div>
+    <h2>Маркетинг как система,<br>а не набор задач</h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>Работаю в маркетинге <strong>с 2008 года</strong>. За это время прошла путь от маркетолога-аналитика на промышленном предприятии до руководителя отдела и маркетолога полного цикла в разных отраслях — от тяжёлой индустрии до туризма и HoReCa.</p>
+      <p>Строю маркетинг как <strong>замкнутую систему</strong>: исследование рынка → стратегия → бренд и упаковка → каналы и кампании → аналитика → оптимизация. Одинаково уверенно работаю и с B2B-продажами через тендеры и личные встречи, и с массовым B2C через digital и SMM.</p>
+      <p>Управляла командами и подрядчиками: дизайнеры, SMM-щики, копирайтеры, event-агентства, PR-партнёры, типографии. Веду проекты от идеи до отчётности по KPI.</p>
+      <p>Активно использую <strong>нейросети</strong> в ежедневной работе — от промт-инжиниринга и генерации контента до создания визуалов, аватаров и аудио. Это даёт скорость и качество без раздувания бюджета.</p>
+    </div>
+    <div class="about-highlights">
+      <div class="highlight"><div class="highlight-num">16+</div><div class="highlight-label">лет в маркетинге, рекламе и PR</div></div>
+      <div class="highlight"><div class="highlight-num">7</div><div class="highlight-label">отраслей с глубокой экспертизой</div></div>
+      <div class="highlight"><div class="highlight-num">B2B</div><div class="highlight-label">+ B2C — оба контура</div></div>
+      <div class="highlight"><div class="highlight-num">AI</div><div class="highlight-label">нейросети в ежедневной работе</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ACHIEVEMENTS ============ -->
+<section class="achievements reveal">
   <div class="container">
-    <div class="hero-grid">
+    <div class="section-head">
+      <div class="section-tag">Ключевые результаты</div>
+      <h2>Цифры, за которыми стою</h2>
+      <p class="section-sub">Подтверждённые показатели из реальных проектов. Все цифры — измеримые KPI, зафиксированные внутренней отчётностью.</p>
+    </div>
+    <div class="ach-grid">
+      <div class="ach-card">
+        <div class="ach-num">418%</div>
+        <div class="ach-label">Выполнение плана новых заказов при норме 110%</div>
+        <div class="ach-source">СТЗ · 2020</div>
+      </div>
+      <div class="ach-card">
+        <div class="ach-num">789%</div>
+        <div class="ach-label">Рост заказов в сегменте «Телеком»</div>
+        <div class="ach-source">СТЗ · 2020</div>
+      </div>
+      <div class="ach-card">
+        <div class="ach-num">72%</div>
+        <div class="ach-label">Доля новой продукции в реализации при плане 20%</div>
+        <div class="ach-source">СТЗ · 2020</div>
+      </div>
+      <div class="ach-card">
+        <div class="ach-num">−50%</div>
+        <div class="ach-label">Снижение затрат на продвижение без потери эффективности</div>
+        <div class="ach-source">СТЗ · 2020</div>
+      </div>
+    </div>
+    <div class="ach-subgrid">
+      <div class="ach-card">
+        <div class="ach-num">×1,7</div>
+        <div class="ach-label">Рост доходности с digital-каналов год к году</div>
+        <div class="ach-source">МЦО Юнион · 2024→2025</div>
+      </div>
+      <div class="ach-card">
+        <div class="ach-num">×4</div>
+        <div class="ach-label">Рост заявок через онлайн-консультант</div>
+        <div class="ach-source">МЦО Юнион · 2025</div>
+      </div>
+      <div class="ach-card">
+        <div class="ach-num">10K+</div>
+        <div class="ach-label">Органический трафик сайта в месяц</div>
+        <div class="ach-source">МЦО Юнион · 2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NICHES ============ -->
+<section id="niches" class="container reveal">
+  <div class="section-head">
+    <div class="section-tag">Отрасли</div>
+    <h2>7 ниш с глубокой экспертизой</h2>
+    <p class="section-sub">От тяжёлой промышленности до туризма и HoReCa. Внутри каждой ниши — полный маркетинговый цикл и проработанные рабочие связи с подрядчиками.</p>
+  </div>
+  <div class="niches-grid">
+
+    <!-- 1. Туризм -->
+    <div class="niche-card">
+      <div class="niche-icon"><svg viewBox="0 0 24 24"><path d="M3 12l9-9 9 9M5 10v10h14V10"/><circle cx="12" cy="14" r="2"/></svg></div>
+      <h3>Туризм</h3>
+      <div class="niche-company">МЦО Юнион · 2024 — настоящее время</div>
+      <p>Маркетолог полного цикла. Полная цифровая воронка туристического бизнеса.</p>
+      <ul class="niche-list">
+        <li>SEO-стратегия, контент-маркетинг, блог компании</li>
+        <li>SMM: ВКонтакте, Telegram — органический рост</li>
+        <li>Email-маркетинг через Unisender, сегментация базы</li>
+        <li>Работа с CRM U-ON.Travel и онлайн-консультантом Qui-Quo</li>
+        <li>Аналитика Яндекс.Метрики, отчётность по KPI</li>
+      </ul>
+      <div class="niche-metrics">
+        <span class="metric-chip">×1,7 доходность</span>
+        <span class="metric-chip">×4 заявки</span>
+        <span class="metric-chip">10K+ визитов/мес</span>
+      </div>
+    </div>
+
+    <!-- 2. FMCG / Алкоголь -->
+    <div class="niche-card">
+      <div class="niche-icon"><svg viewBox="0 0 24 24"><path d="M8 2h8v6l-2 3v9a2 2 0 0 1-2 2h0a2 2 0 0 1-2-2v-9L8 8V2z"/></svg></div>
+      <h3>FMCG · Алкоголь</h3>
+      <div class="niche-company">ЛВЗ «Саранский» · 2010 — 2017</div>
+      <p>Прошла путь от продакт-менеджера до руководителя маркетинговых направлений.</p>
+      <ul class="niche-list">
+        <li>Продуктовый маркетинг: вывод новых SKU, ребрендинг линеек</li>
+        <li>Менеджер по рекламе: ТВ, наружка, BTL-активации</li>
+        <li>PR: работа со СМИ, отраслевые мероприятия, дегустации</li>
+        <li>Event-маркетинг: выставки, корпоративные события, презентации</li>
+        <li>Управление подрядчиками: типографии, дизайн-студии, агентства</li>
+      </ul>
+    </div>
+
+    <!-- 3. Промышленность B2B -->
+    <div class="niche-card">
+      <div class="niche-icon"><svg viewBox="0 0 24 24"><path d="M2 20h20M4 20V8l4 3V8l4 3V8l4 3V8l4 3v9"/></svg></div>
+      <h3>Промышленность · B2B</h3>
+      <div class="niche-company">Саранский телевизионный завод · 2018 — 2021</div>
+      <p>Начальник отдела маркетинга. B2B-продажи через тендеры, прямые контакты, отраслевые выставки.</p>
+      <ul class="niche-list">
+        <li>Вывод новой продукции в сегмент «Телеком»</li>
+        <li>Участие в федеральных выставках и отраслевых форумах</li>
+        <li>Работа с дистрибьюторами и интеграторами</li>
+        <li>Тендерное сопровождение, коммерческие предложения</li>
+        <li>Оптимизация маркетингового бюджета</li>
+      </ul>
+      <div class="niche-metrics">
+        <span class="metric-chip">418% плана</span>
+        <span class="metric-chip">789% телеком</span>
+        <span class="metric-chip">−50% затрат</span>
+      </div>
+    </div>
+
+    <!-- 4. Кондитерское производство -->
+    <div class="niche-card">
+      <div class="niche-icon"><svg viewBox="0 0 24 24"><path d="M12 2v6M9 8h6l-1 4h-4l-1-4zM7 12h10l1 8H6l1-8z"/></svg></div>
+      <h3>Кондитерское производство</h3>
+      <div class="niche-company">ТКМ · опыт работы</div>
+      <p>Маркетинг полного цикла + поддерживающий дизайн собственными силами.</p>
+      <ul class="niche-list">
+        <li>Упаковка и дизайн линейки продукции</li>
+        <li>Продвижение в торговых сетях, мерчандайзинг</li>
+        <li>Запуск новых вкусов и сезонных позиций</li>
+        <li>Несложные дизайн-задачи: этикетки, POS, листовки</li>
+        <li>Работа с подрядчиками по печати и фотосессиям</li>
+      </ul>
+    </div>
+
+    <!-- 5. Девелопмент / ТРЦ -->
+    <div class="niche-card">
+      <div class="niche-icon"><svg viewBox="0 0 24 24"><path d="M3 21V8l9-5 9 5v13M9 21V12h6v9"/></svg></div>
+      <h3>Девелопмент · ТРЦ</h3>
+      <div class="niche-company">Огарёв Плаза · опыт работы</div>
+      <p>Маркетолог торгово-развлекательного центра. B2C через события и арендаторов.</p>
+      <ul class="niche-list">
+        <li>Event-программа ТРЦ: сезонные праздники, активации</li>
+        <li>Совместный маркетинг с арендаторами</li>
+        <li>Наружная реклама, навигация, indoor-медиа</li>
+        <li>Социальные сети ТРЦ, работа с местными блогерами</li>
+        <li>Привлечение и удержание трафика посетителей</li>
+      </ul>
+    </div>
+
+    <!-- 6. HoReCa и ритейл -->
+    <div class="niche-card">
+      <div class="niche-icon"><svg viewBox="0 0 24 24"><path d="M4 2v7a3 3 0 0 0 6 0V2M7 2v20M14 2c-1 4-1 6 0 8h4c1-2 1-4 0-8M16 10v12"/></svg></div>
+      <h3>HoReCa · Ритейл · Услуги</h3>
+      <div class="niche-company">ИП Денисова · опыт работы</div>
+      <p>Маркетинг трёх параллельных направлений одного бизнес-портфеля.</p>
+      <ul class="niche-list">
+        <li><strong>Пекарни:</strong> локальный маркетинг, акции, программа лояльности</li>
+        <li><strong>Кейтеринг:</strong> B2B-продажи на корпоративные события</li>
+        <li><strong>Стоматология:</strong> привлечение пациентов, репутация, отзывы</li>
+        <li>Работа с iiko, контроль точек, обучение персонала</li>
+        <li>Сайты, соцсети, локальная digital-реклама</li>
+      </ul>
+    </div>
+
+    <!-- 7. Недвижимость -->
+    <div class="niche-card">
+      <div class="niche-icon"><svg viewBox="0 0 24 24"><path d="M3 12l9-9 9 9v9a1 1 0 0 1-1 1h-5v-7H10v7H5a1 1 0 0 1-1-1z"/></svg></div>
+      <h3>Недвижимость</h3>
+      <div class="niche-company">Этажи · опыт работы</div>
+      <p>Маркетинг агентства недвижимости. Лидогенерация, бренд риелтора, обучение.</p>
+      <ul class="niche-list">
+        <li>Лидогенерация через digital-каналы</li>
+        <li>Личный бренд агентов и руководителей</li>
+        <li>Контент-маркетинг: статьи, видео, кейсы сделок</li>
+        <li>Корпоративные мероприятия и обучающие события</li>
+        <li>Работа с CRM, аналитика воронки продаж</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ CONTENT (Articles + KPI) ============ -->
+<section id="content" class="container reveal">
+  <div class="section-head">
+    <div class="section-tag">Примеры работ</div>
+    <h2>Контент и аналитика</h2>
+    <p class="section-sub">SEO-статьи для блога и подход к планированию KPI digital-каналов. Реальные материалы и подходы из текущей работы.</p>
+  </div>
+
+  <div class="content-tabs">
+    <button class="tab-btn active" data-tab="articles">SEO-статьи</button>
+    <button class="tab-btn" data-tab="kpi">KPI digital-каналов</button>
+  </div>
+
+  <div class="tab-panel active" id="tab-articles">
+    <div class="articles-grid">
+      <article class="article-card">
+        <div class="article-cover maldives"><span class="article-cover-label">МАЛЬДИВЫ</span></div>
+        <div class="article-body">
+          <div class="article-tag">Lifestyle · Премиум</div>
+          <h3>Мальдивы: гайд по островам и сезонам</h3>
+          <p>Структурированный лонгрид для премиум-сегмента: атоллы, сезонность, типы вилл, советы по выбору отеля.</p>
+          <div class="article-meta"><span>SEO-оптимизация</span><span>Блог МЦО Юнион</span></div>
+        </div>
+      </article>
+
+      <article class="article-card">
+        <div class="article-cover goa"><span class="article-cover-label">ГОА</span></div>
+        <div class="article-body">
+          <div class="article-tag">Бюджет · Молодёжь</div>
+          <h3>Гоа: северный и южный — где ваш отдых</h3>
+          <p>Практический разбор регионов, цен, ритма жизни и сезонов. Под целевой запрос «куда ехать в Гоа».</p>
+          <div class="article-meta"><span>SEO-оптимизация</span><span>Блог МЦО Юнион</span></div>
+        </div>
+      </article>
+
+      <article class="article-card">
+        <div class="article-cover russia"><span class="article-cover-label">РОССИЯ</span></div>
+        <div class="article-body">
+          <div class="article-tag">Внутренний туризм</div>
+          <h3>Россия для интровертов: 7 направлений</h3>
+          <p>Нишевый контент под нестандартный запрос. Точное попадание в аудиторию через эмоциональный угол подачи.</p>
+          <div class="article-meta"><span>SEO + сторителлинг</span>          <div class="article-meta"><span>SEO + сторителлинг</span><span>Блог МЦО Юнион</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-kpi">
+    <div class="kpi-block">
+      <h3>Digital-воронка МЦО Юнион</h3>
+      <p class="kpi-desc">Сводные показатели по ключевым каналам за период работы. Все цифры — реальные данные из систем аналитики и CRM, год к году (2024 → 2025).</p>
+
+      <div class="kpi-channels">
+        <div class="channel-card">
+          <div class="channel-name">Органический трафик сайта</div>
+          <div class="channel-value">10 000+ <span style="font-size:0.9rem;color:var(--text-3);font-weight:400">визитов / мес</span></div>
+          <div class="channel-trend">↑ рост за счёт SEO и блога</div>
+        </div>
+        <div class="channel-card">
+          <div class="channel-name">Доходность digital-каналов</div>
+          <div class="channel-value">×1,7</div>
+          <div class="channel-trend">↑ год к году</div>
+        </div>
+        <div class="channel-card">
+          <div class="channel-name">Заявки через онлайн-консультант</div>
+          <div class="channel-value">×4</div>
+          <div class="channel-trend">↑ Qui-Quo, оптимизация скриптов</div>
+        </div>
+        <div class="channel-card">
+          <div class="channel-name">Email-база</div>
+          <div class="channel-value">Unisender</div>
+          <div class="channel-trend">↑ сегментация, регулярные рассылки</div>
+        </div>
+        <div class="channel-card">
+          <div class="channel-name">SMM: ВКонтакте + Telegram</div>
+          <div class="channel-value">Органика</div>
+          <div class="channel-trend">↑ контент-план, регулярность</div>
+        </div>
+        <div class="channel-card">
+          <div class="channel-name">CRM-воронка</div>
+          <div class="channel-value">U-ON.Travel</div>
+          <div class="channel-trend">↑ интеграция с сайтом и каналами</div>
+        </div>
+      </div>
+
+      <div class="kpi-note">
+        <strong>Методология</strong>
+        Сквозная аналитика: Яндекс.Метрика → CRM U-ON.Travel → Qui-Quo (онлайн-консультант) → Unisender (email). Отчётность по каналам ведётся ежемесячно, KPI пересматриваются ежеквартально с учётом сезонности туристического спроса.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE ============ -->
+<section id="experience" class="container reveal">
+  <div class="section-head">
+    <div class="section-tag">Карьерный путь</div>
+    <h2>Опыт работы</h2>
+    <p class="section-sub">Ключевые места работы и роли. От аналитика на промышленном предприятии — до маркетолога полного цикла в туризме и HoReCa.</p>
+  </div>
+
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-date">2024 — настоящее время</div>
+      <h3>МЦО Юнион</h3>
+      <div class="tl-role">Маркетолог полного цикла · Туризм</div>
+      <p>Полный цифровой контур: SEO, контент-маркетинг, блог, SMM (ВК, Telegram), email-маркетинг через Unisender, работа с CRM U-ON.Travel и онлайн-консультантом Qui-Quo, аналитика Яндекс.Метрики. Результаты: ×1,7 доходность digital год к году, ×4 заявки через онлайн-консультант, 10K+ органического трафика в месяц.</p>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">Опыт работы</div>
+      <h3>ИП Денисова</h3>
+      <div class="tl-role">Маркетолог · HoReCa, ритейл, услуги</div>
+      <p>Параллельное ведение трёх направлений: сеть пекарен, кейтеринг и стоматология. Локальный маркетинг, программы лояльности, B2B-продажи кейтеринга, привлечение пациентов и работа с репутацией клиники. Работа с iiko, обучение персонала, контроль точек.</p>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">Опыт работы</div>
+      <h3>Этажи</h3>
+      <div class="tl-role">Маркетолог · Недвижимость</div>
+      <p>Маркетинг агентства недвижимости. Лидогенерация через digital, развитие личного бренда агентов, контент-маркетинг (кейсы сделок, образовательные материалы), корпоративные обучающие события. CRM, аналитика воронки.</p>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">Опыт работы</div>
+      <h3>Огарёв Плаза</h3>
+      <div class="tl-role">Маркетолог ТРЦ · Девелопмент</div>
+      <p>B2C-маркетинг торгово-развлекательного центра. Event-программа, совместные активации с арендаторами, наружная реклама и indoor-медиа, социальные сети ТРЦ, работа с местными блогерами. Привлечение и удержание трафика посетителей.</p>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">Опыт работы</div>
+      <h3>ТКМ · Кондитерское производство</h3>
+      <div class="tl-role">Маркетолог-дизайнер</div>
+      <p>Маркетинг полного цикла + поддерживающий дизайн собственными силами: упаковка, этикетки, POS-материалы, листовки. Запуск новых вкусов и сезонных позиций, мерчандайзинг в торговых сетях.</p>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">2018 — 2021</div>
+      <h3>Саранский телевизионный завод</h3>
+      <div class="tl-role">Начальник отдела маркетинга · B2B, промышленность</div>
+      <p>Руководство отделом маркетинга промышленного предприятия. Тендерные продажи, отраслевые выставки, вывод новой продукции в сегмент «Телеком». Ключевые результаты 2020: 418% выполнения плана новых заказов (норма 110%), 789% роста в телекоме, 72% доли новой продукции в реализации (план 20%), −50% затрат на продвижение.</p>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">2010 — 2017</div>
+      <h3>ЛВЗ «Саранский»</h3>
+      <div class="tl-role">От продакт-менеджера до руководителя направлений · FMCG, алкоголь</div>
+      <p>Прошла путь от продакт-менеджера до руководителя маркетинговых направлений. Продуктовый маркетинг (вывод SKU, ребрендинг линеек), реклама (ТВ, наружка, BTL), PR, event-маркетинг (выставки, дегустации, корпоративные события), управление подрядчиками — типографии, дизайн-студии, агентства.</p>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">2008 — старт карьеры</div>
+      <h3>Начало работы в маркетинге</h3>
+      <div class="tl-role">Маркетолог-аналитик</div>
+      <p>Старт в маркетинге на промышленном предприятии. Исследования рынка, аналитика продаж, конкурентный анализ. Здесь сформировался системный подход к маркетингу как к измеримой бизнес-функции.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section id="skills" class="container reveal">
+  <div class="section-head">
+    <div class="section-tag">Навыки и инструменты</div>
+    <h2>Стек компетенций</h2>
+    <p class="section-sub">Технологии и направления, с которыми работаю на ежедневной основе.</p>
+  </div>
+
+  <div class="skills-grid">
+    <div class="skill-group">
+      <h4>Стратегия и аналитика</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">Маркетинговая стратегия</span>
+        <span class="skill-tag">Исследования рынка</span>
+        <span class="skill-tag">Конкурентный анализ</span>
+        <span class="skill-tag">Позиционирование</span>
+        <span class="skill-tag">KPI и отчётность</span>
+        <span class="skill-tag">Бюджетирование</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h4>Digital и SEO</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">SEO-стратегия</span>
+        <span class="skill-tag">Контент-маркетинг</span>
+        <span class="skill-tag">Яндекс.Метрика</span>
+        <span class="skill-tag">Веб-аналитика</span>
+        <span class="skill-tag">Воронки продаж</span>
+        <span class="skill-tag">Лидогенерация</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h4>SMM и контент</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">ВКонтакте</span>
+        <span class="skill-tag">Telegram</span>
+        <span class="skill-tag">Контент-план</span>
+        <span class="skill-tag">Копирайтинг</span>
+        <span class="skill-tag">Сторителлинг</span>
+        <span class="skill-tag">Работа с блогерами</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h4>CRM и email</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">U-ON.Travel</span>
+        <span class="skill-tag">Qui-Quo</span>
+        <span class="skill-tag">Unisender</span>
+        <span class="skill-tag">iiko</span>
+        <span class="skill-tag">Email-маркетинг</span>
+        <span class="skill-tag">Сегментация баз</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h4>Бренд и реклама</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">Брендинг</span>
+        <span class="skill-tag">Ребрендинг</span>
+        <span class="skill-tag">ATL: ТВ, наружка</span>
+        <span class="skill-tag">BTL-активации</span>
+        <span class="skill-tag">POS-материалы</span>
+        <span class="skill-tag">Упаковка</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h4>PR и события</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">Работа со СМИ</span>
+        <span class="skill-tag">Отраслевые выставки</span>
+        <span class="skill-tag">Event-маркетинг</span>
+        <span class="skill-tag">Корпоративные события</span>
+        <span class="skill-tag">Дегустации</span>
+        <span class="skill-tag">Личный бренд</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h4>B2B и продажи</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">Тендерное сопровождение</span>
+        <span class="skill-tag">КП и презентации</span>
+        <span class="skill-tag">Работа с дистрибьюторами</span>
+        <span class="skill-tag">Партнёрские программы</span>
+        <span class="skill-tag">Прямые продажи</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h4>AI и автоматизация</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">Промт-инжиниринг</span>
+        <span class="skill-tag">Генерация контента</span>
+        <span class="skill-tag">AI-визуалы</span>
+        <span class="skill-tag">AI-аватары</span>
+        <span class="skill-tag">AI-аудио</span>
+        <span class="skill-tag">Автоматизация задач</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h4>Дизайн (на уровне поддержки)</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">Этикетки и упаковка</span>
+        <span class="skill-tag">POS и листовки</span>
+        <span class="skill-tag">Социальные баннеры</span>
+        <span class="skill-tag">Презентации</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h4>Управление</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">Управление командой</span>
+        <span class="skill-tag">Работа с подрядчиками</span>
+        <span class="skill-tag">Постановка задач</span>
+        <span class="skill-tag">Контроль качества</span>
+        <span class="skill-tag">Обучение персонала</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EDUCATION ============ -->
+<section id="education" class="container reveal">
+  <div class="section-head">
+    <div class="section-tag">Образование</div>
+    <h2>Образование и развитие</h2>
+    <p class="section-sub">Профильное высшее образование в маркетинге и постоянное обновление компетенций.</p>
+  </div>
+
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-year">Высшее образование</div>
+      <h3>Маркетинг</h3>
+      <p>Профильное высшее образование по специальности «Маркетинг».</p>
+      <span class="edu-degree">Специалист</span>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-year">Постоянно</div>
+      <h3>Дополнительное образование</h3>
+      <p>Регулярное обучение по направлениям: digital-маркетинг, SEO, контент-стратегии, AI-инструменты, управление командами.</p>
+      <span class="edu-degree">Курсы и интенсивы</span>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-year">Ежедневно</div>
+      <h3>Профессиональное чтение</h3>
+      <p>Отраслевые издания, кейсы российских и международных компаний, исследования рынков, аналитические отчёты по нишам.</p>
+      <span class="edu-degree">Self-learning</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACTS ============ -->
+<section id="contacts" class="contacts container reveal">
+  <div class="section-head" style="text-align:center">
+    <div class="section-tag">Контакты</div>
+    <h2>Готова к новым задачам</h2>
+    <p class="section-sub" style="margin:0 auto">Открыта к предложениям по найму. Форматы: удалённо, гибрид, офис, командировки. Финансовые условия — обсуждаются индивидуально.</p>
+  </div>
+
+  <div class="contacts-grid">
+    <a href="mailto:hello@example.com" class="contact-card">
+      <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></div>
       <div>
-        <h1>Привет, я <span class="gradient-text">Александра</span></h1>
-        <div class="role">Маркетолог оркестр · SEO-стратег · Маркетолог полного цикла</div>
-        <p class="desc">Строю digital-стратегии, которые приносят кратный рост выручки. Объединяю системный подход (ISO/ИСМ) и креативное SEO-мышление. Запускала проекты, где digital-канал вырос с 3% до 10%+ от выручки компании за 2 года.</p>
-        <div class="hero-cta">
-          <a href="#cases" class="btn btn-primary">Смотреть кейсы</a>
-          <a href="#contacts" class="btn btn-secondary">Связаться</a>
-        </div>
+        <div class="contact-label">Email</div>
+        <div class="contact-value">укажите email</div>
       </div>
-      <div class="avatar">АМ</div>
-    </div>
-  </div>
-</section>
+    </a>
 
-<!-- ABOUT -->
-<section class="about" id="about">
-  <div class="container">
-    <h2>Обо <span class="gradient-text">мне</span></h2>
-    <p class="section-subtitle">Маркетолог-практик. Работаю на стыке стратегии, аналитики и контента.</p>
-    <div class="about-grid">
+    <a href="tel:+70000000000" class="contact-card">
+      <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
       <div>
-        <p>Прошла путь от специалиста по разработкам продукта до руководителя отела маркетинга. Этот опыт научил меня главному: устойчивый рост — это всегда система, а не разовая акция.</p>
-        <p>Сегодня помогаю компаниям выстраивать digital-воронки, которые работают: от SEO-контента и таргетинга до CRM-аналитики и оптимизации конверсий на каждом этапе.</p>
-        <p>Верю в данные, гипотезы и измеримый результат. И в то, что хороший маркетинг начинается с честного позиционирования.</p>
+        <div class="contact-label">Телефон</div>
+        <div class="contact-value">укажите телефон</div>
       </div>
-      <div class="about-stats">
-        <div class="stat-card">
-          <div class="stat-num gradient-text">16+</div>
-          <div class="stat-label">лет в маркетинге</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num gradient-text">12</div>
-          <div class="stat-label">SEO-материалов в портфолио</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num gradient-text">×4</div>
-          <div class="stat-label">рост заказов на промышленных проектах</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num gradient-text">+15%</div>
-          <div class="stat-label">рост выручки за год</div>
-        </div>
+    </a>
+
+    <a href="https://t.me/username" class="contact-card" target="_blank" rel="noopener">
+      <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></div>
+      <div>
+        <div class="contact-label">Telegram</div>
+        <div class="contact-value">@username</div>
       </div>
-    </div>
+    </a>
+
+    <a href="#" class="contact-card">
+      <div class="contact-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 0-8 8c0 6 8 12 8 12s8-6 8-12a8 8 0 0 0-8-8z"/></svg></div>
+      <div>
+        <div class="contact-label">Локация</div>
+        <div class="contact-value">Россия · удалённо / релокация</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="contact-cta">
+    <a href="resume.pdf" download class="btn btn-primary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+      Скачать резюме (PDF)
+    </a>
+    <a href="mailto:hello@example.com" class="btn btn-secondary">
+      Написать письмо
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
   </div>
 </section>
 
-<!-- SKILLS -->
-<section class="skills" id="skills">
+<!-- ============ FOOTER ============ -->
+<footer>
   <div class="container">
-    <h2>Ключевые <span class="gradient-text">компетенции</span></h2>
-    <p class="section-subtitle">Полный цикл digital-маркетинга — от стратегии до операционки.</p>
-    <div class="skills-grid">
-      <div class="skill-card">
-        <div class="skill-icon">🎯</div>
-        <h3>Digital-стратегия</h3>
-        <p>Постановка целей, выбор каналов, дорожные карты роста, бюджетирование и KPI.</p>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon">🔍</div>
-        <h3>SEO и контент</h3>
-        <p>Семантика, структура, лонгриды, продуктовый контент. Работа с B2B и travel-нишами.</p>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon">📊</div>
-        <h3>Аналитика и воронки</h3>
-        <p>Сквозная аналитика, ROMI, когорты, оптимизация конверсии на каждом этапе.</p>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon">📱</div>
-        <h3>SMM и таргетинг</h3>
-        <p>VK, Telegram, Яндекс.Директ. Стратегии для региональных и федеральных рынков.</p>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon">⚙️</div>
-        <h3>ИСМ и качество</h3>
-        <p>ISO 9001, внутренние аудиты, документирование процессов, кросс-функциональная работа.</p>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon">📝</div>
-        <h3>PR и копирайтинг</h3>
-        <p>Пресс-релизы, экспертные статьи, brand voice. Публикации в отраслевых СМИ.</p>
-      </div>
+    <div class="logo">
+      <span class="logo-mark">АМ</span>
+      <span>Александра Мелентьева</span>
     </div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section class="experience" id="experience">
-  <div class="container">
-    <h2>Опыт <span class="gradient-text">работы</span></h2>
-    <p class="section-subtitle">От разработки идеи до вывода на рынок и довеение до конечного потребителя — через системное мышление.</p>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-date">2024 — настоящее время</div>
-        <div class="timeline-role">Маркетолог · SEO-стратег</div>
-        <div class="timeline-company">Туристическая компания «Юнион»</div>
-        <ul class="timeline-desc">
-          <li>Запуск и развитие digital-направления: SEO, контент, SMM, таргетинг</li>
-          <li>Рост доли digital в выручке компании с 3% до 10%+ за 2 года</li>
-          <li>Кратный рост выручки в пиковые месяцы — digital генерирует более 30% доходности в региональных отделах</li>
-          <li>Разработка стратегии «Юнион-2025» и контент-плана из 12+ SEO-материалов</li>
-        </ul>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-date">2020 — 2021</div>
-        <div class="timeline-role">Начальник отдела маркетинга · Маркетолог</div>
-        <div class="timeline-company">Саранский телевизионный завод (СТЗ)</div>
-        <ul class="timeline-desc">
-          <li>Поддержка ИСМ по стандартам ISO 9001</li>
-          <li>Запуск отдела с нуля</li>
-          <li>Кратный рост заказов: ×4 по плану новой продукции, ×7 в телеком-сегменте</li>
-          <li>PR-сопровождение запуска производства российских ARM-серверов для компании ТКМ</li>
-          <li>Кросс-функциональная работа: производство, продажи, маркетинг, качество</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CASES -->
-<section class="cases" id="cases">
-  <div class="container">
-    <h2>Ключевые <span class="gradient-text">кейсы</span></h2>
-    <p class="section-subtitle">Три проекта, которые лучше всего показывают мой подход к работе.</p>
-    <div class="cases-grid">
-      <div class="case-card">
-        <div class="case-emoji">🏭</div>
-        <h3>СТЗ: рост заказов через систему</h3>
-        <p>Внедрение системного маркетинга на промышленном предприятии. Стандартизация процессов плюс целенаправленная работа с ключевыми сегментами.</p>
-        <div class="case-metrics">
-          <div class="metric"><span class="metric-label">Рост по новой продукции</span><span class="metric-value">×4</span></div>
-          <div class="metric"><span class="metric-label">Рост в телеком-сегменте</span><span class="metric-value">×7</span></div>
-          <div class="metric"><span class="metric-label">Стандарт</span><span class="metric-value">ISO 9001</span></div>
-        </div>
-      </div>
-      <div class="case-card">
-        <div class="case-emoji">🎯</div>
-        <h3>Юнион-2025: Маркетолог</h3>
-        <p>Стимулирование digital-направления в туристической компании. SEO-контент более 60 статей на туристическую тематику, развитие соцсетей, прогноз ROMI > 200%.</p>
-        <div class="case-metrics">
-          <div class="metric"><span class="metric-label">SEO-материалов</span><span class="metric-value">12+</span>        <div class="case-metrics">
-          <div class="metric"><span class="metric-label">SEO-материалов</span><span class="metric-value">12+</span></div>
-          <div class="metric"><span class="metric-label">Рост выручки</span><span class="metric-value">+15%</span></div>
-          <div class="metric"><span class="metric-label">Прогноз ROMI</span><span class="metric-value">200%+</span></div>
-        </div>
-      </div>
-      <div class="case-card">
-        <div class="case-emoji">📈</div>
-        <h3>Воронка продаж: рост digital-канала</h3>
-        <p>Перестройка воронки в туристической компании: от первого касания до повторных продаж. Системная работа с конверсиями на каждом этапе.</p>
-        <div class="case-metrics">
-          <div class="metric"><span class="metric-label">Доля digital в выручке</span><span class="metric-value">3% → 10%+</span></div>
-          <div class="metric"><span class="metric-label">Рост выручки за год</span><span class="metric-value">+15%</span></div>
-          <div class="metric"><span class="metric-label">Доля digital в регионах</span><span class="metric-value">до 30%+</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SEO MATERIALS -->
-<section class="seo" id="seo">
-  <div class="container">
-    <h2>SEO-материалы и <span class="gradient-text">публикации</span></h2>
-    <p class="section-subtitle">Тексты, которые работают на органический трафик и формируют экспертный образ бренда.</p>
-
-    <div class="seo-intro">
-      <strong>12 SEO-материалов</strong> по ключевым направлениям туристического холдинга «Юнион» — лонгриды о курортах России и Абхазии, оптимизированные под поисковые запросы и реальные потребности путешественников. Плюс PR-публикация о промышленном проекте СТЗ.
-    </div>
-
-    <div class="seo-grid">
-
-      <a href="https://docs.google.com/document/d/1ZH57qKA-xjvlJqiNM34IqP0qPtcFbvpBYgsJ55ANur0/edit?usp=sharing" target="_blank" class="seo-card">
-        <span class="seo-tag">Абхазия</span>
-        <h4>Гагра — путеводитель по курорту</h4>
-        <span class="seo-link">Читать →</span>
-      </a>
-
-      <a href="https://docs.google.com/document/d/1txe2ZhJLPRFVAdU4XrHVTMWD6drNgupUVFXiZiS2DSQ/edit?usp=sharing" target="_blank" class="seo-card">
-        <span class="seo-tag">Абхазия</span>
-        <h4>Новый Афон — что посмотреть и где остановиться</h4>
-        <span class="seo-link">Читать →</span>
-      </a>
-
-      <a href="https://docs.google.com/document/d/1jVkqQxY7-VtXwo64EUqymhnG3LfGk4qEaBjCch23XLk/edit?usp=sharing" target="_blank" class="seo-card">
-        <span class="seo-tag">Абхазия</span>
-        <h4>Старый Сухум — история и атмосфера</h4>
-        <span class="seo-link">Читать →</span>
-      </a>
-
-      <a href="https://docs.google.com/document/d/180UIbZEPughhlP_TfQ0aalZ6ZbQ4wCvSlQRiO6vFG_w/edit?usp=sharing" target="_blank" class="seo-card">
-        <span class="seo-tag">Абхазия</span>
-        <h4>Абхазия — полный гид по стране</h4>
-        <span class="seo-link">Читать →</span>
-      </a>
-
-      <a href="https://docs.google.com/document/d/1T34if2XjiVGjCB0fIaizuarMTmIowFcHXwnfsm_BZBQ/edit?usp=sharing" target="_blank" class="seo-card">
-        <span class="seo-tag">Кавминводы</span>
-        <h4>Ессентуки — отдых и лечение</h4>
-        <span class="seo-link">Читать →</span>
-      </a>
-
-      <a href="https://docs.google.com/document/d/1qqAdMyQDpLcYS0_LzsChWHFTy8gyB5qv-SYvygXxvrs/edit?usp=sharing" target="_blank" class="seo-card">
-        <span class="seo-tag">Кавминводы</span>
-        <h4>Кисловодск — курорт и достопримечательности</h4>
-        <span class="seo-link">Читать →</span>
-      </a>
-
-      <a href="https://docs.google.com/document/d/1KVQ7G-YG2V7LW2blOU6laDdjnCGmh5kSOuPHxItG9VM/edit?usp=sharing" target="_blank" class="seo-card">
-        <span class="seo-tag">Крым</span>
-        <h4>Крым — путеводитель по полуострову</h4>
-        <span class="seo-link">Читать →</span>
-      </a>
-
-      <a href="https://docs.google.com/document/d/1kYSlERBhRK01jmtBf5es6ODQMi_6Q3gmbw92CqruINo/edit?usp=sharing" target="_blank" class="seo-card">
-        <span class="seo-tag">Крым</span>
-        <h4>Судак — отдых на восточном побережье</h4>
-        <span class="seo-link">Читать →</span>
-      </a>
-
-      <a href="https://docs.google.com/document/d/1FXWHqT--TQKaXbiKR1U5hyqrQtFh_L3Em7AmeMA06gU/edit?usp=sharing" target="_blank" class="seo-card">
-        <span class="seo-tag">Крым</span>
-        <h4>Ялта — жемчужина южного берега</h4>
-        <span class="seo-link">Читать →</span>
-      </a>
-
-      <a href="https://docs.google.com/document/d/1VXqcdFCOdmsWYDbZij4gSqxx0cK8zbAG_jDeQSDa67E/edit?usp=sharing" target="_blank" class="seo-card">
-        <span class="seo-tag">Крым</span>
-        <h4>Севастополь — город-герой и курорт</h4>
-        <span class="seo-link">Читать →</span>
-      </a>
-
-      <a href="https://docs.google.com/document/d/1iIkGEn9LZOOrayrMHqR34oQOOBKNx8cShuW_MCBvan4/edit?usp=sharing" target="_blank" class="seo-card">
-        <span class="seo-tag">Горнолыжка</span>
-        <h4>Курорт «Газпром» — горнолыжный отдых</h4>
-        <span class="seo-link">Читать →</span>
-      </a>
-
-      <a href="https://docs.google.com/document/d/15C_Too4lmcqEMQhYIrmR6Dl31QGCNlD6chwY4Qv_OGw/edit?usp=sharing" target="_blank" class="seo-card">
-        <span class="seo-tag">Горнолыжка</span>
-        <h4>Домбай — горы, трассы и атмосфера</h4>
-        <span class="seo-link">Читать →</span>
-      </a>
-
-      <a href="https://docs.google.com/document/d/13sDPCPiUwhy9utAbCCDPld0MKDqp4AIPedguO1GKD4Q/edit?usp=sharing" target="_blank" class="seo-card" style="border: 1.5px solid var(--grad-end);">
-        <span class="seo-tag">PR · СТЗ</span>
-        <h4>Саранский завод — производство российских ARM-серверов для ТКМ</h4>
-        <span class="seo-link">Читать →</span>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-<!-- EDUCATION -->
-<section class="education">
-  <div class="container">
-    <h2>Образование и <span class="gradient-text">сертификаты</span></h2>
-    <p class="section-subtitle">Системное образование плюс непрерывное обучение в digital.</p>
-    <div class="edu-grid">
-      <div class="edu-card">
-        <div class="edu-year">Высшее образование</div>
-        <h3>Реклама и дизайн</h3>
-        <div class="edu-org">Профильный вуз</div>
-        <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 8px;">Базовая подготовка по управлению, экономике и маркетингу.</p>
-      </div>
-      <div class="edu-card">
-        <div class="edu-year">Профессиональное</div>
-        <h3>ISO 9001 · Системы менеджмента качества</h3>
-        <div class="edu-org">Внутренний аудитор ИСМ</div>
-        <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 8px;">Стандартизация процессов, аудит, документооборот.</p>
-      </div>
-      <div class="edu-card">
-        <div class="edu-year">Digital-маркетинг</div>
-        <h3>SEO, контент-маркетинг, аналитика</h3>
-        <div class="edu-org">Профильные онлайн-курсы</div>
-        <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 8px;">Яндекс.Метрика, Google Analytics, поисковая оптимизация.</p>
-      </div>
-      <div class="edu-card">
-        <div class="edu-year">Непрерывно</div>
-        <h3>Performance, SMM, копирайтинг</h3>
-        <div class="edu-org">Самообразование и практика</div>
-        <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 8px;">VK Ads, Яндекс.Директ, brand voice.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACTS -->
-<section class="contacts" id="contacts">
-  <div class="container">
-    <h2>Давайте <span class="gradient-text">работать вместе</span></h2>
-    <p class="section-subtitle">Открыта к проектам, консультациям и интересным предложениям. Отвечаю в течение дня.</p>
-
-    <div class="contact-list">
-      <a href="mailto:melentievasandra@gmail.com" class="contact-item">
-        <span class="contact-icon">✉️</span>
-        <span>melentievasandra@gmail.com</span>
-      </a>
-      <a href="https://t.me/MeleSandra" target="_blank" rel="noopener" class="contact-item">
-        <span class="contact-icon">💬</span>
-        <span>Telegram: @MeleSandra</span>
-      </a>
-      <a href="tel:+79914641615" class="contact-item">
-        <span class="contact-icon">📱</span>
-        <span>+7 (991) 464-16-15</span>
-      </a>
-    </div>
-
-    <div class="location-info">
-      <div class="location-card">
-        <span class="location-icon">📍</span>
-        <div class="location-text">
-          <strong>Саранск</strong>
-          <span>МСК · UTC+3</span>
-        </div>
-      </div>
-      <div class="location-card">
-        <span class="location-icon">💻</span>
-        <div class="location-text">
-          <strong>Удалённый формат</strong>
-          <span>Центральный округ · разница ≤ 1 часа</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-
-      <!-- Колонка 1: Бренд -->
-      <div class="footer-col footer-brand">
-        <div class="footer-logo gradient-text">Александра Мелентьева</div>
-        <p class="footer-desc">Маркетолог · SEO-стратег</p>
-        <p class="footer-tagline">Строю системы, которые приносят кратный рост.</p>
-      </div>
-
-      <!-- Колонка 2: Навигация -->
-      <div class="footer-col">
-        <h4 class="footer-title">Разделы</h4>
-        <ul class="footer-links">
-          <li><a href="#about">Обо мне</a></li>
-          <li><a href="#skills">Компетенции</a></li>
-          <li><a href="#experience">Опыт работы</a></li>
-          <li><a href="#cases">Кейсы</a></li>
-          <li><a href="#seo">Публикации</a></li>
-        </ul>
-      </div>
-
-      <!-- Колонка 3: Контакты -->
-      <div class="footer-col">
-        <h4 class="footer-title">Контакты</h4>
-        <ul class="footer-links">
-          <li><a href="mailto:melentievasandra@gmail.com">melentievasandra@gmail.com</a></li>
-          <li><a href="https://t.me/MeleSandra" target="_blank" rel="noopener">Telegram: @MeleSandra</a></li>
-          <li><a href="tel:+79914641615">+7 (991) 464-16-15</a></li>
-        </ul>
-      </div>
-
-      <!-- Колонка 4: Локация -->
-      <div class="footer-col">
-        <h4 class="footer-title">Локация</h4>
-        <ul class="footer-links">
-          <li>📍 Саранск (МСК · UTC+3)</li>
-          <li>💻 Удалённый формат</li>
-          <li>🌍 Центральный округ</li>
-          <li>🕐 Разница ≤ 1 часа</li>
-        </ul>
-      </div>
-
-    </div>
-
-    <div class="footer-bottom">
-      <div class="footer-copy">
-        © 2026 <strong>Александра Мелентьева</strong> · Все права защищены
-      </div>
-      <div class="footer-meta">
-        <span>Сделано с ❤️ и вниманием к деталям</span>
-      </div>
-    </div>
+    <p>Marketing Portfolio · 2025</p>
+    <p style="margin-top:0.5rem;font-size:0.8rem">Маркетинг полного цикла · 16+ лет опыта</p>
   </div>
 </footer>
 
-<style>
-  .footer {
-    background: #0a0f1e;
-    color: #94a3b8;
-    padding: 64px 0 24px;
-    border-top: 1px solid rgba(255,255,255,0.05);
-    position: relative;
-  }
-  .footer::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #22d3ee, #a855f7, transparent);
-  }
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr 1.4fr 1.2fr;
-    gap: 48px;
-    margin-bottom: 48px;
-  }
-  @media (max-width: 900px) {
-    .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
-  }
-  @media (max-width: 500px) {
-    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-  }
-  .footer-logo {
-    font-size: 1.3rem;
-    font-weight: 800;
-    margin-bottom: 12px;
-  }
-  .footer-desc {
-    color: #cbd5e1;
-    font-size: 0.95rem;
-    margin-bottom: 12px;
-    line-height: 1.5;
-  }
-  .footer-tagline {
-    color: #64748b;
-    font-size: 0.9rem;
-    font-style: italic;
-    line-height: 1.5;
-  }
-  .footer-title {
-    color: white;
-    font-size: 1rem;
-    font-weight: 700;
-    margin-bottom: 18px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  .footer-links {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 0;
-  }
-  .footer-links li {
-    color: #94a3b8;
-    font-size: 0.92rem;
-    line-height: 1.5;
-  }
-  .footer-links a {
-    color: #94a3b8;
-    text-decoration: none;
-    transition: color 0.2s, transform 0.2s;
-    display: inline-block;
-  }
-  .footer-links a:hover {
-    color: #a855f7;
-    transform: translateX(3px);
-  }
-  .footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 16px;
-    padding-top: 24px;
-    border-top: 1px solid rgba(255,255,255,0.06);
-    font-size: 0.88rem;
-  }
-  .footer-copy strong {
-    color: white;
-    font-weight: 600;
-  }
-  .footer-meta {
-    color: #64748b;
-    font-size: 0.85rem;
-  }
-  @media (max-width: 600px) {
-    .footer-bottom { flex-direction: column; text-align: center; }
-  }
-</style>
+<!-- ============ JAVASCRIPT ============ -->
+<script>
+// ========= Theme toggle =========
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = document.getElementById('themeIcon');
+const html = document.documentElement;
+
+const sunIcon = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>';
+const moonIcon = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+
+function setTheme(theme){
+  html.setAttribute('data-theme', theme);
+  themeIcon.innerHTML = theme === 'dark' ? moonIcon : sunIcon;
+  localStorage.setItem('theme', theme);
+}
+
+const savedTheme = localStorage.getItem('theme') || 'dark';
+setTheme(savedTheme);
+
+themeToggle.addEventListener('click', () => {
+  const current = html.getAttribute('data-theme');
+  setTheme(current === 'dark' ? 'light' : 'dark');
+});
+
+// ========= Tabs (Articles / KPI) =========
+const tabBtns = document.querySelectorAll('.tab-btn');
+const tabPanels = document.querySelectorAll('.tab-panel');
+
+tabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = btn.dataset.tab;
+    tabBtns.forEach(b => b.classList.remove('active'));
+    tabPanels.forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + target).classList.add('active');
+  });
+});
+
+// ========= Scroll reveal =========
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ========= Smooth scroll for anchor links =========
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e){
+    const targetId = this.getAttribute('href');
+    if(targetId === '#') return;
+    const target = document.querySelector(targetId);
+    if(target){
+      e.preventDefault();
+      const offset = 80;
+      const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  });
+});
+</script>
+
 </body>
 </html>
